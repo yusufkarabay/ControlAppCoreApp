@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Core.Services
 {
-    public interface IRequestRepository:IGenericService<Request>
+    public interface IRequestService:IGenericService<Request>
     {
     }
 }
