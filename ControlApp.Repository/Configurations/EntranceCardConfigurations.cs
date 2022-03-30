@@ -13,7 +13,10 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<EntranceCard> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(x => x.SpecialNo).IsRequired().HasMaxLength(40);
+            builder.Property(x => x.DeliveryDate).HasColumnType("Date");
+
+
         }
     }
 }

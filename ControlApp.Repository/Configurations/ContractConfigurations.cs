@@ -13,7 +13,18 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Contract> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(x => x.ContractName).IsRequired().HasMaxLength(80);
+            builder.Property(x => x.ContractStart).HasColumnType("Date").IsRequired();
+            builder.Property(x => x.ContractEnd).HasColumnType("Date").IsRequired();
+            builder.Property(x => x.Company).IsRequired().HasMaxLength(80);
+            builder.Property(x => x.CompanyAdress).HasMaxLength(256);
+            builder.Property(x => x.CompanyTel).HasMaxLength(24);
+            builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
+
+
+
+
+
         }
     }
 }

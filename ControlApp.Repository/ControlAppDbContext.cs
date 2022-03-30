@@ -11,6 +11,8 @@ namespace ControlApp.Repository
 {
     public class ControlAppDbContext : DbContext
     {
+        //DbContextOptions almasının sebebi veritabanı yolunun startup dosyasında verilecek olması
+        //DbContextOptions<ControlAppDbContext>  bu şekilde kullanılması da ControlAppDbContext için bir options verdim demek
         public ControlAppDbContext(DbContextOptions<ControlAppDbContext> dbContextOptions) : base(dbContextOptions)
         {
         }

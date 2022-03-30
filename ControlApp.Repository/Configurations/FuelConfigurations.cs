@@ -13,7 +13,9 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Fuel> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(x => x.FuelTime).IsRequired().HasColumnType("Date");
+            builder.Property(x => x.FuelEmployeeName).IsRequired().HasMaxLength(80);
+
         }
     }
 }

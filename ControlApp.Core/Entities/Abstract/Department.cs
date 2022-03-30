@@ -9,6 +9,7 @@ namespace ControlApp.Core.Entities.Abstract
     public class Department : BaseEntity
     {
         public string Name { get; set; }
+
         public virtual ICollection<Employee>? Employees { get; set; }
         public virtual ICollection<Inventory> Inventories { get; set; }
         public virtual ICollection<PasswordNote> PasswordNotes { get; set; }

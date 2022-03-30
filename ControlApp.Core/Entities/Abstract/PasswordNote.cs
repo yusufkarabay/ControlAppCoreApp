@@ -14,7 +14,7 @@ namespace ControlApp.Core.Entities.Abstract
         public string? ThisPasswordNote { get; set; }
         public string CreatedEmployee { get; set; }
         public DateTime CreatedTime { get; set; }
-
-        public virtual Department Department { get; set; }  
+        public Guid DepartmentId { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

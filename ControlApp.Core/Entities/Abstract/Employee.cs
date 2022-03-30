@@ -18,6 +18,7 @@ namespace ControlApp.Core.Entities.Abstract
         public string? Mail { get; set; }
         public bool IsDeleted { get; set; } = false;
         public bool IsUser { get; set; } = false;
+        public Guid DepartmentId { get; set; }
 
         public Department? Department;
         public ICollection<Authority>? Authorities { get; set; }

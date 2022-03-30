@@ -13,7 +13,9 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Maintenance> builder)
         {
-            throw new NotImplementedException();
+          
+            builder.Property(x => x.FirstTime).IsRequired().HasColumnType("Date");
+
         }
     }
 }

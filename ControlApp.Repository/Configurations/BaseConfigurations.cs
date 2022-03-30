@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Repository.Configurations
 {
-    public class AuthorityConfigurations : IEntityTypeConfiguration<Authority>
+    internal class BaseConfigurations : IEntityTypeConfiguration<BaseEntity>
     {
-        public void Configure(EntityTypeBuilder<Authority> builder)
+        public void Configure(EntityTypeBuilder<BaseEntity> builder)
         {
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.CreatedDate).HasColumnType("Date");
+            builder.Property(x => x.UpdatedDate).HasColumnType("Date");
 
         }
     }

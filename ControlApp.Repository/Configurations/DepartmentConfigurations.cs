@@ -13,7 +13,8 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(40);    
+
         }
     }
 }

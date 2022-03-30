@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Core.Entities.Abstract
 {
-    public class Authority:BaseEntity
+    public class Authority : BaseEntity
     {
-        public virtual ICollection<Employee>? Employees { get; set; }    
+        public string Name { get; set; }
+        public virtual ICollection<Employee>? Employees { get; set; }
     }
 }

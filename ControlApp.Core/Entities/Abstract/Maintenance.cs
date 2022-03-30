@@ -10,7 +10,8 @@ namespace ControlApp.Core.Entities.Abstract
     public class Maintenance : BaseEntity
     {
         public int AgainMonth { get; set; } 
-        public DateTime FirstTime { get; set; } 
+        public DateTime FirstTime { get; set; }
+        public Guid ContractId { get; set; }
         public virtual Contract Contract { get; set; }  
     }
 }
