@@ -13,8 +13,8 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Drawer> builder)
         {
-            builder.Property(x => x.SpecialNo).IsRequired().HasMaxLength(24);
-            builder.Property(x => x.DeliveryDate).HasColumnType("Date");
+            //builder.Property(x => x.SpecialNo).IsRequired().HasMaxLength(24);
+            //builder.Property(x => x.DeliveryDate).HasColumnType("Date");
 
         }
     }

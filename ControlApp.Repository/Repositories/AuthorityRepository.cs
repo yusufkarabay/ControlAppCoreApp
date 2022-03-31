@@ -1,5 +1,6 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace ControlApp.Repository.Repositories
 {
     public class AuthorityRepository : GenericRepository<Authority>, IAuthorityRepository
     {
+        public AuthorityRepository(ControlAppDbContext dbContext, DbSet<Authority> dbSet) : base(dbContext, dbSet)
+        {
+        }
     }
 }

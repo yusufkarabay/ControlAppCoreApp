@@ -9,6 +9,6 @@ namespace ControlApp.Core.Entities.Abstract
     public class Authority : BaseEntity
     {
         public string Name { get; set; }
-        public virtual ICollection<Employee>? Employees { get; set; }
+        public  ICollection<Employee>? Employees { get; set; }
     }
 }

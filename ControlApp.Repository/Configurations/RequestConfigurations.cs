@@ -13,10 +13,10 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Request> builder)
         {
-            builder.Property(x => x.Title).IsRequired().HasMaxLength(80);
-            builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
-            builder.Property(x => x.RequestedEmployee).IsRequired().HasMaxLength(80);
-            builder.Property(x => x.RequestingEmployee).IsRequired().HasMaxLength(80);
+            //builder.Property(x => x.Title).IsRequired().HasMaxLength(80);
+            //builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
+            //builder.Property(x => x.RequestedEmployee).IsRequired().HasMaxLength(80);
+            //builder.Property(x => x.RequestingEmployee).IsRequired().HasMaxLength(80);
             
         }
     }

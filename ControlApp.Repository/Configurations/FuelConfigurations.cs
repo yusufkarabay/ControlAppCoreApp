@@ -13,8 +13,8 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Fuel> builder)
         {
-            builder.Property(x => x.FuelTime).IsRequired().HasColumnType("Date");
-            builder.Property(x => x.FuelEmployeeName).IsRequired().HasMaxLength(80);
+            //builder.Property(x => x.FuelTime).IsRequired().HasColumnType("Date");
+            //builder.Property(x => x.FuelEmployeeName).IsRequired().HasMaxLength(80);
 
         }
     }

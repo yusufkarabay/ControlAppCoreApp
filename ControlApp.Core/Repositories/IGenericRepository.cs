@@ -15,7 +15,7 @@ namespace ControlApp.Core.Repositories
         Task AddAsync(T entity);      
         void Update(T entity);
         void Delete(T entity);
-        void DeleteById(Guid id);
+       
       
     }
 }

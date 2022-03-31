@@ -18,6 +18,7 @@ namespace ControlApp.Core.Entities.Abstract
         public string? Notes { get; set; }
         public string CreatedEmployee { get; set; }
         public DateTime CreatedTime { get; set; }
+        
 
 
     }

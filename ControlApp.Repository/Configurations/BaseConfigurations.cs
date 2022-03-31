@@ -13,8 +13,8 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<BaseEntity> builder)
         {
-            builder.Property(x => x.CreatedDate).HasColumnType("Date");
-            builder.Property(x => x.UpdatedDate).HasColumnType("Date");
+            //builder.Property(x => x.CreatedDate).HasColumnType("Date");
+            //builder.Property(x => x.UpdatedDate).HasColumnType("Date");
 
         }
     }

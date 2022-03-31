@@ -13,9 +13,9 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<GeneratorUsedTime> builder)
         {
-            builder.Property(x => x.GeneratorWorkedTime).IsRequired();
-            builder.Property(x => x.AddedTime).IsRequired().HasMaxLength(80);
-            builder.Property(x => x.AddedTime).IsRequired().HasColumnType("Date");
+            //builder.Property(x => x.GeneratorWorkedTime).IsRequired();
+            //builder.Property(x => x.AddedTime).IsRequired().HasMaxLength(80);
+            //builder.Property(x => x.AddedTime).IsRequired().HasColumnType("Date");
 
 
 

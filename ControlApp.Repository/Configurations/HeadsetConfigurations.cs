@@ -13,8 +13,8 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Headset> builder)
         {
-            builder.Property(x => x.SpecialNo).IsRequired().HasMaxLength(24);
-            builder.Property(x => x.DeliveryDate).IsRequired().HasColumnType("Date");
+        //    builder.Property(x => x.SpecialNo).IsRequired().HasMaxLength(24);
+        //    builder.Property(x => x.DeliveryDate).IsRequired().HasColumnType("Date");
 
         }
     }

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Core.Entities.Abstract
 {
-    public class BaseEntity : IBaseEntity
+    public abstract class BaseEntity : IBaseEntity
     {
-        public Guid Id { get ; set ; }
-        public DateTime CreatedDate { get; set; }
+        public Guid Id { get ; set ; }=Guid.NewGuid();  
+        public DateTime CreatedDate { get; set; }=DateTime.Now;
         public DateTime? UpdatedDate { get ; set ; }
         public bool Deleted { get ; set ; }= false;
         public bool Enabled { get ; set ; }= false;

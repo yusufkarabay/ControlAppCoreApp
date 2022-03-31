@@ -12,6 +12,6 @@ namespace ControlApp.Core.Entities.Abstract
         public int AgainMonth { get; set; } 
         public DateTime FirstTime { get; set; }
         public Guid ContractId { get; set; }
-        public virtual Contract Contract { get; set; }  
+        public  Contract Contract { get; set; }  
     }
 }

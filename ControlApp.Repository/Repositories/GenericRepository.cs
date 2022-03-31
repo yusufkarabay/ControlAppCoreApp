@@ -1,4 +1,5 @@
 ﻿using ControlApp.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,39 +11,45 @@ namespace ControlApp.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public Task AddAsync(T entity)
+        //readonly'e yalnızca burada ya da constructor'da değer ataması yapılmaktadır
+        protected readonly ControlAppDbContext _dbContext;
+        private readonly DbSet<T> _dbSet;
+
+        public GenericRepository(ControlAppDbContext dbContext, DbSet<T> dbSet)
         {
-            throw new NotImplementedException();
+            _dbContext=dbContext;
+            _dbSet=_dbContext.Set<T>();
         }
 
-        public void Delete(T entity)
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+           await _dbSet.AddAsync(entity);   
         }
 
-        public void DeleteById(Guid id)
+        public  void Delete(T entity)
         {
-            throw new NotImplementedException();
+           _dbSet.Remove(entity);
+        }
+        
+
+        public  IQueryable<T> GetAll()
+        {
+           return _dbSet.AsNoTracking().AsQueryable();
         }
 
-        public IQueryable<T> GetAll()
+        public async Task<T> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
+           return await _dbSet.FindAsync(id);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+           _dbSet.Update(entity);   
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+           return _dbSet.Where(expression); 
         }
     }
 }

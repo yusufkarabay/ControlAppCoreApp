@@ -8,10 +8,10 @@ namespace ControlApp.Core.Entities.Abstract
 {
     public class GeneratorUsedTime
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; }= Guid.NewGuid();   
         public int GeneratorWorkedTime { get; set; }
         public string AddedEmployee { get; set; }
-        public DateTime AddedTime { get; set; }
+        public DateTime AddedTime { get; set; }= DateTime.Now;  
 
     }
 }

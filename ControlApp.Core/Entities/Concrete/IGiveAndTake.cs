@@ -8,9 +8,9 @@ namespace ControlApp.Core.Entities.Concrete
 {
     public interface IGiveAndTake
     {
-         string SpecialNo { get; set; }
-         string? DeliveryEmployee { get; set; }
-         string? ReceiverEmployee { get; set; }
-         DateTime? DeliveryDate { get; set; }
+        string SpecialNo { get; set; }
+         string DeliveryEmployee { get; set; }
+         string ReceiverEmployee { get; set; }
+         DateTime DeliveryDate { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace ControlApp.Repository.Configurations
         public void Configure(EntityTypeBuilder<Maintenance> builder)
         {
           
-            builder.Property(x => x.FirstTime).IsRequired().HasColumnType("Date");
+            //builder.Property(x => x.FirstTime).IsRequired().HasColumnType("Date");
 
         }
     }

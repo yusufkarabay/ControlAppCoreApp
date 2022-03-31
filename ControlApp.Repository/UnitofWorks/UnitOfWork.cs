@@ -9,14 +9,19 @@ namespace ControlApp.Repository.UnitofWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
+        private readonly ControlAppDbContext _controlAppDbContext;   
+        public UnitOfWork(ControlAppDbContext controlAppDbContext)
+        {
+            _controlAppDbContext = controlAppDbContext; 
+        }
         public void Commit()
         {
-            throw new NotImplementedException();
+            _controlAppDbContext.SaveChanges();
         }
 
-        public Task CommitAsync()
+        public async Task CommitAsync()
         {
-            throw new NotImplementedException();
+         await _controlAppDbContext.SaveChangesAsync();
         }
     }
 }

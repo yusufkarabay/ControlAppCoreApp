@@ -1,5 +1,6 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Repository.Repositories
 {
-    public class SentryDoneRepository:GenericRepository<SentryDone>,ISentryDoneRepository
+    public class SentryDoneRepository : GenericRepository<SentryDone>, ISentryDoneRepository
     {
+        public SentryDoneRepository(ControlAppDbContext dbContext, DbSet<SentryDone> dbSet) : base(dbContext, dbSet)
+        {
+        }
     }
 }

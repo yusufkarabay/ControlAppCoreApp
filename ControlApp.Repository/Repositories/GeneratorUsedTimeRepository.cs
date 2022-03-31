@@ -1,5 +1,6 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace ControlApp.Repository.Repositories
 {
     public class GeneratorUsedTimeRepository : GenericRepository<GeneratorUsedTime>, IGeneratorUsedTimeRepository
     {
+        public GeneratorUsedTimeRepository(ControlAppDbContext dbContext, DbSet<GeneratorUsedTime> dbSet) : base(dbContext, dbSet)
+        {
+        }
     }
 }

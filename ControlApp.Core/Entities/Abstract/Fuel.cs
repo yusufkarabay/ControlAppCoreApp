@@ -9,7 +9,7 @@ namespace ControlApp.Core.Entities.Abstract
     public class Fuel
     {
         public Guid Id { get; set; }= Guid.NewGuid();   
-        public DateTime FuelTime { get; set; }
+        public DateTime FuelTime { get; set; }= DateTime.Now;   
         public string FuelEmployeeName { get; set; }
     }
 }

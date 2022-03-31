@@ -13,7 +13,7 @@ namespace ControlApp.Core.Entities.Abstract
         public string CreatedEmployee { get; set; }
         public DateTime CreatedTime { get; set; }
         public Guid DepartmentId { get; set; }
+        public Department Departments { get; set; }
 
-        public virtual Department Department { get; set; }
     }
 }
