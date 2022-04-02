@@ -14,6 +14,6 @@ namespace ControlApp.Core.Entities.Abstract
         public DateTime CreatedTime { get; set; }
         public Guid DepartmentId { get; set; }
 
-        public Department Departments { get; set; }
+        public Department Department { get; set; }
     }
 }

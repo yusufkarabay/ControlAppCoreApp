@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ControlApp.Repository.Migrations
 {
-    public partial class InitDatabase : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -30,10 +30,10 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SpecialNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialNo = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     DeliveryEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceiverEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -49,15 +49,15 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ContractName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContractStart = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ContractEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompanyAdress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyTel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    ContractStart = table.Column<DateTime>(type: "Date", nullable: false),
+                    ContractEnd = table.Column<DateTime>(type: "Date", nullable: false),
+                    Company = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CompanyAdress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    CompanyTel = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -73,7 +73,7 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -89,11 +89,11 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DirectoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DirectoryName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     Info = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -109,10 +109,10 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SpecialNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialNo = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     DeliveryEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceiverEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -128,10 +128,10 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SpecialNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialNo = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     DeliveryEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceiverEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -147,8 +147,8 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FuelTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FuelEmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FuelTime = table.Column<DateTime>(type: "Date", nullable: false),
+                    FuelEmployeeName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,7 +162,7 @@ namespace ControlApp.Repository.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GeneratorWorkedTime = table.Column<int>(type: "int", nullable: false),
                     AddedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    AddedTime = table.Column<DateTime>(type: "Date", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -174,10 +174,10 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SpecialNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialNo = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     DeliveryEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceiverEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -193,10 +193,10 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SpecialNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialNo = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     DeliveryEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceiverEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -213,8 +213,10 @@ namespace ControlApp.Repository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AgainMonth = table.Column<int>(type: "int", nullable: false),
-                    FirstTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ContractId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstTime = table.Column<DateTime>(type: "Date", nullable: false),
+                    CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContractId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -227,8 +229,7 @@ namespace ControlApp.Repository.Migrations
                         name: "FK_Maintenances_Contracts_ContractId",
                         column: x => x.ContractId,
                         principalTable: "Contracts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -272,12 +273,12 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SerialNumber = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
-                    Info = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Info = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    CreatedEmployee = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -300,11 +301,11 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ThisPasswordNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    ThisPasswordNote = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    CreatedEmployee = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -328,8 +329,8 @@ namespace ControlApp.Repository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Done = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedEmployee = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -353,8 +354,8 @@ namespace ControlApp.Repository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ToDo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedEmployee = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -377,13 +378,13 @@ namespace ControlApp.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsSend = table.Column<bool>(type: "bit", nullable: false),
                     IsEnd = table.Column<bool>(type: "bit", nullable: false),
-                    RequestingEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RequestedEmployee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestingEmployee = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    RequestedEmployee = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "Date", nullable: false),
                     RequestEndText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),

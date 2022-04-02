@@ -24,7 +24,6 @@ namespace ControlApp.Repository.Configurations
 
 
 
-
         }
     }
 }

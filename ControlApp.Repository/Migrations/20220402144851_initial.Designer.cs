@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControlApp.Repository.Migrations
 {
     [DbContext(typeof(ControlAppDbContext))]
-    [Migration("20220331141739_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20220402144851_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -64,7 +65,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("DeliveryEmployee")
                         .IsRequired()
@@ -79,7 +80,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("SpecialNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -97,23 +99,27 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("Company")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("CompanyAdress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("CompanyTel")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime>("ContractEnd")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("ContractName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime>("ContractStart")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -123,7 +129,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -158,7 +164,9 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -182,14 +190,15 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("DirectoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<bool>("Enabled")
                         .HasColumnType("bit");
@@ -199,7 +208,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -222,7 +232,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("DeliveryEmployee")
                         .IsRequired()
@@ -237,7 +247,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("SpecialNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -323,7 +334,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("DeliveryEmployee")
                         .IsRequired()
@@ -338,7 +349,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("SpecialNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -356,10 +368,11 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("FuelEmployeeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime>("FuelTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.HasKey("Id");
 
@@ -377,7 +390,8 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("AddedTime")
-                        .HasColumnType("datetime2");
+                        .HasMaxLength(80)
+                        .HasColumnType("Date");
 
                     b.Property<int>("GeneratorWorkedTime")
                         .HasColumnType("int");
@@ -400,7 +414,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("DeliveryEmployee")
                         .IsRequired()
@@ -415,7 +429,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("SpecialNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -438,7 +453,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("DeliveryEmployee")
                         .IsRequired()
@@ -453,7 +468,8 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("SpecialNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -477,10 +493,11 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("CreatedEmployee")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -492,15 +509,18 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Info")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("SerialNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -521,10 +541,17 @@ namespace ControlApp.Repository.Migrations
                     b.Property<int>("AgainMonth")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ContractId")
+                    b.Property<Guid?>("ContractId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedEmployee")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Deleted")
@@ -534,7 +561,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("FirstTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -557,10 +584,11 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("CreatedEmployee")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -573,14 +601,17 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("ThisPasswordNote")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -606,7 +637,7 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -631,15 +662,18 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("RequestedEmployee")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("RequestingEmployee")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -664,10 +698,11 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("CreatedEmployee")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -703,10 +738,11 @@ namespace ControlApp.Repository.Migrations
 
                     b.Property<string>("CreatedEmployee")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -760,10 +796,8 @@ namespace ControlApp.Repository.Migrations
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Maintenance", b =>
                 {
                     b.HasOne("ControlApp.Core.Entities.Abstract.Contract", "Contract")
-                        .WithMany()
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Maintenances")
+                        .HasForeignKey("ContractId");
 
                     b.Navigation("Contract");
                 });
@@ -800,29 +834,34 @@ namespace ControlApp.Repository.Migrations
 
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.SentryDone", b =>
                 {
-                    b.HasOne("ControlApp.Core.Entities.Abstract.Department", "Departments")
+                    b.HasOne("ControlApp.Core.Entities.Abstract.Department", "Department")
                         .WithMany("SentryDones")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Departments");
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.SentryToDo", b =>
                 {
-                    b.HasOne("ControlApp.Core.Entities.Abstract.Department", "Departments")
+                    b.HasOne("ControlApp.Core.Entities.Abstract.Department", "Department")
                         .WithMany("SentryToDos")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Departments");
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Authority", b =>
                 {
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Contract", b =>
+                {
+                    b.Navigation("Maintenances");
                 });
 
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Department", b =>
