@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(ControlAppDbContext dbContext, DbSet<Employee> dbSet) : base(dbContext, dbSet)
+        public EmployeeRepository(ControlAppDbContext dbContext, DbSet<Employee> dbSet) : base(dbContext)
         {
         }
     }

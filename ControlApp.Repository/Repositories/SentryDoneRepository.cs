@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class SentryDoneRepository : GenericRepository<SentryDone>, ISentryDoneRepository
     {
-        public SentryDoneRepository(ControlAppDbContext dbContext, DbSet<SentryDone> dbSet) : base(dbContext, dbSet)
+        public SentryDoneRepository(ControlAppDbContext dbContext, DbSet<SentryDone> dbSet) : base(dbContext)
         {
         }
     }

@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class CabinetRepository : GenericRepository<Cabinet>, ICabinetRepository
     {
-        public CabinetRepository(ControlAppDbContext dbContext, DbSet<Cabinet> dbSet) : base(dbContext, dbSet)
+        public CabinetRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

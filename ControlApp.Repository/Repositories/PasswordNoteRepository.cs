@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class PasswordNoteRepository : GenericRepository<PasswordNote>, IPassworNoteRepository
     {
-        public PasswordNoteRepository(ControlAppDbContext dbContext, DbSet<PasswordNote> dbSet) : base(dbContext, dbSet)
+        public PasswordNoteRepository(ControlAppDbContext dbContext, DbSet<PasswordNote> dbSet) : base(dbContext)
         {
         }
     }

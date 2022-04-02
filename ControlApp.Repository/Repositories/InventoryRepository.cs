@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class InventoryRepository : GenericRepository<Inventory>, IInventoryRepository
     {
-        public InventoryRepository(ControlAppDbContext dbContext, DbSet<Inventory> dbSet) : base(dbContext, dbSet)
+        public InventoryRepository(ControlAppDbContext dbContext, DbSet<Inventory> dbSet) : base(dbContext)
         {
         }
     }

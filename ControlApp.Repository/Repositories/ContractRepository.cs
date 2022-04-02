@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class ContractRepository : GenericRepository<Contract>, IContractRepository
     {
-        public ContractRepository(ControlAppDbContext dbContext, DbSet<Contract> dbSet) : base(dbContext, dbSet)
+        public ContractRepository(ControlAppDbContext dbContext, DbSet<Contract> dbSet) : base(dbContext)
         {
         }
     }

@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class DepartmentRepository : GenericRepository<Department>, IDepartmentRepository
     {
-        public DepartmentRepository(ControlAppDbContext dbContext, DbSet<Department> dbSet) : base(dbContext, dbSet)
+        public DepartmentRepository(ControlAppDbContext dbContext, DbSet<Department> dbSet) : base(dbContext)
         {
         }
     }

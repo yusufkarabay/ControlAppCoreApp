@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class GuestCardRepository : GenericRepository<GuestCard>, IGuestCardRepository
     {
-        public GuestCardRepository(ControlAppDbContext dbContext, DbSet<GuestCard> dbSet) : base(dbContext, dbSet)
+        public GuestCardRepository(ControlAppDbContext dbContext, DbSet<GuestCard> dbSet) :base(dbContext)
         {
         }
     }

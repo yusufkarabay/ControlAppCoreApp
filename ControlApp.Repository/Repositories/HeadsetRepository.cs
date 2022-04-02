@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class HeadsetRepository : GenericRepository<Headset>, IHeadsetRepository
     {
-        public HeadsetRepository(ControlAppDbContext dbContext, DbSet<Headset> dbSet) : base(dbContext, dbSet)
+        public HeadsetRepository(ControlAppDbContext dbContext, DbSet<Headset> dbSet) : base(dbContext)
         {
         }
     }

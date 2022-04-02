@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class AuthorityRepository : GenericRepository<Authority>, IAuthorityRepository
     {
-        public AuthorityRepository(ControlAppDbContext dbContext, DbSet<Authority> dbSet) : base(dbContext, dbSet)
+        public AuthorityRepository(ControlAppDbContext dbContext, DbSet<Authority> dbSet) : base(dbContext)
         {
         }
     }

@@ -1,9 +1,13 @@
+using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
 using ControlApp.Core.Services;
 using ControlApp.Core.UnitOfWorks;
 using ControlApp.Repository;
 using ControlApp.Repository.Repositories;
 using ControlApp.Repository.UnitofWorks;
+using ControlApp.Service.Mapping;
+using ControlApp.Service.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -14,7 +18,25 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{   
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
+
+///***********************************************************************
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddScoped<ICabinetRepository, CabinetRepository>();
+builder.Services.AddScoped<ICabinetService, CabinetService>();
+
+
+
+
 
 builder.Services.AddDbContext<ControlAppDbContext>(x =>
 {
@@ -25,9 +47,7 @@ builder.Services.AddDbContext<ControlAppDbContext>(x =>
     });
 });
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+
 
 var app = builder.Build();
 

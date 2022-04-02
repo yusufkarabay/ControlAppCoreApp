@@ -14,9 +14,9 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Core.Entities.Abstract.Directory> builder)
         {
-           //builder.Property(x=>x.DirectoryName).IsRequired().HasMaxLength(40);   
-           //builder.Property(x=>x.Phone).IsRequired().HasMaxLength(24);
-           // builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
+            builder.Property(x => x.DirectoryName).IsRequired().HasMaxLength(40);
+            builder.Property(x => x.Phone).IsRequired().HasMaxLength(24);
+            builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
 
 
         }

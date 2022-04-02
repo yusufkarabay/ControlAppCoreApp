@@ -15,7 +15,7 @@ namespace ControlApp.Repository.Repositories
         protected readonly ControlAppDbContext _dbContext;
         private readonly DbSet<T> _dbSet;
 
-        public GenericRepository(ControlAppDbContext dbContext, DbSet<T> dbSet)
+        public GenericRepository(ControlAppDbContext dbContext)
         {
             _dbContext=dbContext;
             _dbSet=_dbContext.Set<T>();
