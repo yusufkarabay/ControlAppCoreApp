@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ControlApp.Core.DTOs;
+using ControlApp.Core.DTOs.EmployeeDtos;
 using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
 using ControlApp.Core.Services;

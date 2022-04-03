@@ -1,4 +1,5 @@
 ﻿using ControlApp.Core.DTOs;
+using ControlApp.Core.DTOs.EmployeeDtos;
 using ControlApp.Core.Entities.Abstract;
 using System;
 using System.Collections.Generic;
