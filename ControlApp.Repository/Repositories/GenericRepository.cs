@@ -13,7 +13,7 @@ namespace ControlApp.Repository.Repositories
     {
         //readonly'e yalnızca burada ya da constructor'da değer ataması yapılmaktadır
         protected readonly ControlAppDbContext _dbContext;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(ControlAppDbContext dbContext)
         {
@@ -24,6 +24,13 @@ namespace ControlApp.Repository.Repositories
         public async Task AddAsync(T entity)
         {
            await _dbSet.AddAsync(entity);   
+        }
+
+      
+
+        public async Task<T> ByEmployee(string name)
+        {
+            return await _dbSet.FindAsync(name);
         }
 
         public  void Delete(T entity)

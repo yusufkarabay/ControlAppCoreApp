@@ -11,8 +11,13 @@ namespace ControlApp.Repository.Repositories
 {
     public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(ControlAppDbContext dbContext, DbSet<Employee> dbSet) : base(dbContext)
+        public EmployeeRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<List<Employee>> IsActive()
+        {
+           return await _dbContext.Employees.Where(x=>x.IsUser==true).ToListAsync();  
         }
     }
 }

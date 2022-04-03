@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class FuelRpository : GenericRepository<Fuel>, IFuelRepository
     {
-        public FuelRpository(ControlAppDbContext dbContext, DbSet<Fuel> dbSet) : base(dbContext)
+        public FuelRpository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

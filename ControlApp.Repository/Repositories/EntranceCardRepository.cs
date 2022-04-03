@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class EntranceCardRepository : GenericRepository<EntranceCard>, IEntranceCardRepository
     {
-        public EntranceCardRepository(ControlAppDbContext dbContext, DbSet<EntranceCard> dbSet) : base(dbContext)
+        public EntranceCardRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

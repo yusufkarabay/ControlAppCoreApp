@@ -9,5 +9,6 @@ namespace ControlApp.Core.Repositories
 {
     public interface ICabinetRepository:IGenericRepository<Cabinet>
     {
+     
     }
 }

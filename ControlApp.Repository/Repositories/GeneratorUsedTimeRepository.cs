@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class GeneratorUsedTimeRepository : GenericRepository<GeneratorUsedTime>, IGeneratorUsedTimeRepository
     {
-        public GeneratorUsedTimeRepository(ControlAppDbContext dbContext, DbSet<GeneratorUsedTime> dbSet) : base(dbContext)
+        public GeneratorUsedTimeRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlApp.Core.DTOs
+namespace ControlApp.Core.DTOs.EmployeeDtos
+
 {
     public class EmployeeDto:BaseDto
     {

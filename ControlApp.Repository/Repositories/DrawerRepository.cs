@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class DrawerRepository : GenericRepository<Drawer>, IDrawerRepository
     {
-        public DrawerRepository(ControlAppDbContext dbContext, DbSet<Drawer> dbSet) : base(dbContext)
+        public DrawerRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

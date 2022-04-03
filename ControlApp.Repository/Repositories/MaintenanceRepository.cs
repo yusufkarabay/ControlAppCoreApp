@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class MaintenanceRepository : GenericRepository<Maintenance>, IMaintenanceRepository
     {
-        public MaintenanceRepository(ControlAppDbContext dbContext, DbSet<Maintenance> dbSet) : base(dbContext)
+        public MaintenanceRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

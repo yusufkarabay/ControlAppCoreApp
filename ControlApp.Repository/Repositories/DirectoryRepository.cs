@@ -10,7 +10,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class DirectoryRepository : GenericRepository<Core.Entities.Abstract.Directory>, IDirectoryRepository
     {
-        public DirectoryRepository(ControlAppDbContext dbContext, DbSet<Core.Entities.Abstract.Directory> dbSet) : base(dbContext)
+        public DirectoryRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

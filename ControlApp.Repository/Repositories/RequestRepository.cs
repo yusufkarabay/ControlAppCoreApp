@@ -11,7 +11,7 @@ namespace ControlApp.Repository.Repositories
 {
     public class RequestRepository : GenericRepository<Request>, IRequestRepository
     {
-        public RequestRepository(ControlAppDbContext dbContext, DbSet<Request> dbSet) : base(dbContext)
+        public RequestRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
     }

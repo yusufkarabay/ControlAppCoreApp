@@ -34,7 +34,8 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddScoped<ICabinetRepository, CabinetRepository>();
 builder.Services.AddScoped<ICabinetService, CabinetService>();
 
-
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 
 

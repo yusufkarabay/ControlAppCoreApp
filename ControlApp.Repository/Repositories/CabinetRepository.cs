@@ -14,5 +14,7 @@ namespace ControlApp.Repository.Repositories
         public CabinetRepository(ControlAppDbContext dbContext) : base(dbContext)
         {
         }
+
+       
     }
 }
