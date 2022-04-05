@@ -6,17 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ControlApp.API.Controllers
 {
-    
-    public class EmployeesController : CustomBaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeesController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IGenericService<Employee> _service;
         private readonly IEmployeeService _employeeService;
 
         public EmployeesController(IMapper mapper, IGenericService<Employee> service, IEmployeeService employeeService)
         {
             _mapper=mapper;
-            _service=service;
             _employeeService=employeeService;
         }
 
@@ -24,10 +23,10 @@ namespace ControlApp.API.Controllers
         /// Aktif Personelleri Getirir
         /// </summary>
         /// <returns></returns>
-        [HttpGet("[action]")]
-        public async Task<IActionResult> IsActive()
-        {
-            return CreateActionResult(await _employeeService.IsActive());
-        }
+        //[HttpGet("[action]")]
+        //public async Task<IActionResult> IsActive()
+        //{
+        //   // return CreateActionResult(await _employeeService.IsActive());
+        //}
     }
 }

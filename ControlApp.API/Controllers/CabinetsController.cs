@@ -4,20 +4,22 @@ using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ControlApp.API.Controllers
 {
-    
-    public class CabinetsController : CustomBaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CabinetsController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IGenericService<Cabinet> _service;
+
         private readonly ICabinetService _cabinetService;
 
         public CabinetsController(IMapper mapper, IGenericService<Cabinet> service, ICabinetService cabinetService)
         {
             _mapper=mapper;
-            _service=service;
+
             _cabinetService=cabinetService;
         }
 
@@ -29,12 +31,16 @@ namespace ControlApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var cabinets = await _service.GetAllAsync();
+            var cabinets = await _cabinetService.GetAllAsync();
             var cabinetsDtos = _mapper.Map<List<CabinetDto>>(cabinets.ToList());
 
-
-            return CreateActionResult(CustomResponseDto<List<CabinetDto>>.Success(200, cabinetsDtos));
+            return Ok(cabinetsDtos);
         }
+
+
+
+
+
         /// <summary>
         /// Id'ye Göre Çekmece Getirir
         /// </summary>
@@ -43,21 +49,47 @@ namespace ControlApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var cabinet = await _service.GetByIdAsync(id);
+            var cabinet = await _cabinetService.GetByIdAsync(id);
             var cabinetsDto = _mapper.Map<CabinetDto>(cabinet);
-            return CreateActionResult(CustomResponseDto<CabinetDto>.Success(200, cabinetsDto));
+            if (cabinet==null)
+            {
+                return NotFound("İlgili Id'ye Göre Çekmece Bulunamadı");
+            }
+            return Ok(cabinetsDto);
         }
+
+
+
+        //************************************************************************************************************
+        [HttpGet]
+        [Route("[action]/{name}")]
+        public async Task<IActionResult> GetByReceiverName(string name)
+        {
+            return Ok();
+        }
+        //************************************************************************************************************
+
+
+
+
         /// <summary>
         /// Çekmece Ekler
         /// </summary>
         /// <param name="cabinetDto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Add(CabinetDto cabinetDto)
+        public async Task<IActionResult> Add([FromBody] CabinetDto cabinetDto)
         {
-            var cabinet = await _service.AddAsync(_mapper.Map<Cabinet>(cabinetDto));
-            var cabinetsDto = _mapper.Map<CabinetDto>(cabinet);
-            return CreateActionResult(CustomResponseDto<CabinetDto>.Success(201, cabinetsDto));
+
+            if (ModelState.IsValid)
+            {
+                var cabinet = await _cabinetService.AddAsync(_mapper.Map<Cabinet>(cabinetDto));
+                var cabinetsDto = _mapper.Map<CabinetDto>(cabinet);
+                return CreatedAtAction("GetById", new { id = cabinetDto.Id }, cabinetsDto);
+            }
+            return BadRequest(ModelState);
+
+
         }
         /// <summary>
         /// Çekmece Bilgisini Günceller
@@ -67,10 +99,10 @@ namespace ControlApp.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(CabinetDto cabinetDto)
         {
-            await _service.UpdateAsync(_mapper.Map<Cabinet>(cabinetDto));
+            await _cabinetService.UpdateAsync(_mapper.Map<Cabinet>(cabinetDto));
 
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-        }
+            return Ok(cabinetDto);
+         }
         /// <summary>
         /// Cekmece Siler
         /// </summary>
@@ -79,10 +111,27 @@ namespace ControlApp.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var cabinet = await _service.GetByIdAsync(id);
-            await _service.DeleteAsync(cabinet);
+            var cabinet = await _cabinetService.GetByIdAsync(id);
+            await _cabinetService.DeleteAsync(cabinet);
 
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreatedAtAction("GetById", new { id = cabinet.Id }, cabinet);
+          
+        }
+
+        [HttpGet("entity-specific")]
+        public async Task<IActionResult> GetSpecific()
+        {
+            var cabinets = await _cabinetService.GetAllAsync();
+            return Ok(cabinets.Select(c => new CabinetDto { 
+                    CreatedDate = c.CreatedDate,
+                    Id = c.Id,
+                    SpecialNo = c.SpecialNo,
+                    DeliveryDate = c.DeliveryDate,
+                    DeliveryEmployee = c.DeliveryEmployee,
+                    ReceiverEmployee = c.ReceiverEmployee,
+                }
+            ));
+
         }
     }
 }

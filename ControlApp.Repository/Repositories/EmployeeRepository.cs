@@ -15,7 +15,7 @@ namespace ControlApp.Repository.Repositories
         {
         }
 
-        public async Task<List<Employee>> IsActive()
+        public async Task<List<Employee>> IsActiveAsync()
         {
            return await _dbContext.Employees.Where(x=>x.IsUser==true).ToListAsync();  
         }

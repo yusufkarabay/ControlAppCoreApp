@@ -9,6 +9,6 @@ namespace ControlApp.Core.Repositories
 {
     public interface IEmployeeRepository:IGenericRepository<Employee>
     {
-        Task<List<Employee>> IsActive();
+        Task<List<Employee>> IsActiveAsync();
     }
 }

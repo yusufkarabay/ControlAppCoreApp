@@ -28,7 +28,7 @@ namespace ControlApp.Service.Services
         public async Task<CustomResponseDto<List<EmployeeActiveDto>>> IsActive()
         {
 
-            var employee = await _employeeRepository.IsActive();
+            var employee = await _employeeRepository.IsActiveAsync();
             var employeeActiveDto = _mapper.Map<List<EmployeeActiveDto>>(employee);
             return CustomResponseDto<List<EmployeeActiveDto>>.Success(200, employeeActiveDto);
         }
