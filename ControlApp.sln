@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlApp.Core", "ControlApp.Core\ControlApp.Core.csproj", "{D860C3F7-E051-4932-BC2A-3D6297E55D08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlApp.Core", "ControlApp.Core\ControlApp.Core.csproj", "{D860C3F7-E051-4932-BC2A-3D6297E55D08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlApp.Service", "ControlApp.Service\ControlApp.Service.csproj", "{CBFA3683-F7F3-4C32-9CDA-C02BCED5C38E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlApp.Service", "ControlApp.Service\ControlApp.Service.csproj", "{CBFA3683-F7F3-4C32-9CDA-C02BCED5C38E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlApp.Repository", "ControlApp.Repository\ControlApp.Repository.csproj", "{572C95BB-E015-46C9-988A-4629781683F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlApp.Repository", "ControlApp.Repository\ControlApp.Repository.csproj", "{572C95BB-E015-46C9-988A-4629781683F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlApp.API", "ControlApp.API\ControlApp.API.csproj", "{928A3D66-DF0B-42DD-806D-0EA1EDEA1A36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlApp.API", "ControlApp.API\ControlApp.API.csproj", "{928A3D66-DF0B-42DD-806D-0EA1EDEA1A36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Core.DTOs
 {
-    public abstract class BaseDto
+    public class BaseDto
     {
-        public Guid Id { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string CreatedEmployee { get; set; }
+        public DateTime CreatedTime { get; set; }
     }
+}
 }
