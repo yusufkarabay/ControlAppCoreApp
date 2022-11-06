@@ -81,15 +81,16 @@ namespace ControlApp.API.Controllers
         public async Task<IActionResult> Add([FromBody] CabinetDto cabinetDto)
         {
 
-            if (ModelState.IsValid)
-            {
-                var cabinet = await _cabinetService.AddAsync(_mapper.Map<Cabinet>(cabinetDto));
-                var cabinetsDto = _mapper.Map<CabinetDto>(cabinet);
-                return CreatedAtAction("GetById", new { id = cabinetDto.Id }, cabinetsDto);
-            }
-            return BadRequest(ModelState);
+            //if (ModelState.IsValid)
+            //{
+            //    var cabinet = await _cabinetService.AddAsync(_mapper.Map<Cabinet>(cabinetDto));
+            //    var cabinetsDto = _mapper.Map<CabinetDto>(cabinet);
+            //    return CreatedAtAction("GetById", new { id = cabinetDto. }, cabinetsDto);
+            //}
+            //return BadRequest(ModelState);
+            return Ok();
 
-
+            
         }
         /// <summary>
         /// Çekmece Bilgisini Günceller
@@ -121,17 +122,18 @@ namespace ControlApp.API.Controllers
         [HttpGet("entity-specific")]
         public async Task<IActionResult> GetSpecific()
         {
-            var cabinets = await _cabinetService.GetAllAsync();
-            return Ok(cabinets.Select(c => new CabinetDto { 
-                    CreatedDate = c.CreatedDate,
-                    Id = c.Id,
-                    SpecialNo = c.SpecialNo,
-                    DeliveryDate = c.DeliveryDate,
-                    DeliveryEmployee = c.DeliveryEmployee,
-                    ReceiverEmployee = c.ReceiverEmployee,
-                }
-            ));
+            //var cabinets = await _cabinetService.GetAllAsync();
+            //return Ok(cabinets.Select(c => new CabinetDto { 
+            //        CreatedDate = c.CreatedDate,
+            //        Id = c.Id,
+            //        SpecialNo = c.SpecialNo,
+            //        DeliveryDate = c.DeliveryDate,
+            //        DeliveryEmployee = c.DeliveryEmployee,
+            //        ReceiverEmployee = c.ReceiverEmployee,
+            //    }
+            //));
 
+            return Ok();    
         }
     }
 }

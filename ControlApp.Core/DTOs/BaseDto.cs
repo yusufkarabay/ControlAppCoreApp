@@ -12,4 +12,4 @@ namespace ControlApp.Core.DTOs
         public DateTime CreatedTime { get; set; }
     }
 }
-}
+

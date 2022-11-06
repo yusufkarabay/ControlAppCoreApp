@@ -1,6 +1,7 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Entities.Concrete;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Repository
 {
-    public class ControlAppDbContext : DbContext
+    public class ControlAppDbContext : IdentityDbContext<User,IdentityRole,string>
     {
         //DbContextOptions almasının sebebi veritabanı yolunun startup dosyasında verilecek olması
         //DbContextOptions<ControlAppDbContext>  bu şekilde kullanılması da ControlAppDbContext için bir options verdim demek
@@ -36,21 +37,26 @@ namespace ControlApp.Repository
         public DbSet<Request> Requests { get; set; }
         public DbSet<SentryDone> SentryDones { get; set; }
         public DbSet<SentryToDo> SentryToDos { get; set; }
-     
-
-
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //bu asemblyde tüm configure dosyalarını bulur  IEntityTypeConfiguration interfacesini arar
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-           
             
-
-
-
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            foreach (var entity in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
+            {
+                var baseEntity = entity.Entity as BaseEntity;
+                baseEntity.Version++;
+                baseEntity.UpdatedDate = DateTime.Now;
+            }
+
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }

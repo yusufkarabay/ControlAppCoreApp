@@ -27,9 +27,6 @@ namespace ControlApp.Service.Mapping
             CreateMap<SentryToDo, SentryToDoDto>().ReverseMap();
             CreateMap<Cabinet, CabinetDto>().ReverseMap();
             CreateMap<Employee, EmployeeActiveDto>();
-
-
-
         }
     }
 }
