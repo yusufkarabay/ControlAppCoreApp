@@ -1,24 +1,15 @@
 ﻿using ControlApp.Core.Entities.Abstract;
-using ControlApp.Core.Entities.Concrete;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using Microsoft.Extensions.Options;
+
 
 namespace ControlApp.Repository
 {
-    public class ControlAppDbContext : IdentityDbContext<User,IdentityRole,string>
+    public class ControlAppDbContext : DbContext
     {
-        //DbContextOptions almasının sebebi veritabanı yolunun startup dosyasında verilecek olması
-        //DbContextOptions<ControlAppDbContext>  bu şekilde kullanılması da ControlAppDbContext için bir options verdim demek
-        public ControlAppDbContext(DbContextOptions<ControlAppDbContext> dbContextOptions) : base(dbContextOptions)
-        {
-        }
+
         public DbSet<Authority> Authorities { get; set; }
         public DbSet<Cabinet> Cabinets { get; set; }
         public DbSet<Contract> Contracts { get; set; }
@@ -37,15 +28,26 @@ namespace ControlApp.Repository
         public DbSet<Request> Requests { get; set; }
         public DbSet<SentryDone> SentryDones { get; set; }
         public DbSet<SentryToDo> SentryToDos { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //bu asemblyde tüm configure dosyalarını bulur  IEntityTypeConfiguration interfacesini arar
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            
+
             base.OnModelCreating(modelBuilder);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+          
+                options.UseSqlServer("Server=Yusuf;Database=CapCap;Trusted_Connection=True;");
+            
+        }
+
+
+
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {

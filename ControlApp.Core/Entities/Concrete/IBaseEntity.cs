@@ -8,11 +8,13 @@ namespace ControlApp.Core.Entities.Concrete
 {
     public interface IBaseEntity
     {
-         Guid Id { get; set; }
-         DateTime CreatedDate { get; set; }
-         DateTime? UpdatedDate { get; set; }
-         bool Deleted { get; set; } 
-         bool Enabled { get; set; } 
-        
+        Guid Id { get; set; }
+        DateTime CreatedDate { get; set; }
+        DateTime? UpdatedDate { get; set; }
+        bool IsDeleted { get; set; }
+        bool Enabled { get; set; }
+        string CreatedBy { get; set; }
+        string LastModifiedBy { get; set; }
+
     }
 }

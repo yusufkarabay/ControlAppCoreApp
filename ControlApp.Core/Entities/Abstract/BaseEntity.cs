@@ -13,7 +13,7 @@ namespace ControlApp.Core.Entities.Abstract
         public Guid Id { get ; set ; }=Guid.NewGuid();  
         public DateTime CreatedDate { get; set; }=DateTime.Now;
         public DateTime? UpdatedDate { get ; set ; }
-        public bool Deleted { get ; set ; }= false;
+        public bool IsDeleted { get ; set ; }= false;
         public bool Enabled { get ; set ; }= false;
         public string CreatedBy { get; set; } = "Yusuf";
         public string LastModifiedBy { get; set; } = "Hasan";

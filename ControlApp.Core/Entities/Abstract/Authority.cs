@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 namespace ControlApp.Core.Entities.Abstract
 {
     public class Authority : BaseEntity
-    {
-        [MaxLength(50)]
+    {     
         public string Name { get; set; }
-        public ICollection<Employee>? Employees { get; set; }
+        
     }
 }
