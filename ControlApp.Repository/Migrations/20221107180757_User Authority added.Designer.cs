@@ -4,6 +4,7 @@ using ControlApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControlApp.Repository.Migrations
 {
     [DbContext(typeof(ControlAppDbContext))]
-    partial class ControlAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221107180757_User Authority added")]
+    partial class UserAuthorityadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,11 +54,16 @@ namespace ControlApp.Repository.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<long>("Version")
                         .IsConcurrencyToken()
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Authorities");
                 });
@@ -958,9 +965,6 @@ namespace ControlApp.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AuthorityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1014,9 +1018,14 @@ namespace ControlApp.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorityId");
-
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Authority", b =>
+                {
+                    b.HasOne("ControlApp.Core.Entities.Abstract.User", null)
+                        .WithMany("Authorities")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Employee", b =>
@@ -1088,17 +1097,6 @@ namespace ControlApp.Repository.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("ControlApp.Core.Entities.Abstract.User", b =>
-                {
-                    b.HasOne("ControlApp.Core.Entities.Abstract.Authority", "Authority")
-                        .WithMany()
-                        .HasForeignKey("AuthorityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Authority");
-                });
-
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Contract", b =>
                 {
                     b.Navigation("Maintenances");
@@ -1117,6 +1115,11 @@ namespace ControlApp.Repository.Migrations
                     b.Navigation("SentryDones");
 
                     b.Navigation("SentryToDos");
+                });
+
+            modelBuilder.Entity("ControlApp.Core.Entities.Abstract.User", b =>
+                {
+                    b.Navigation("Authorities");
                 });
 #pragma warning restore 612, 618
         }

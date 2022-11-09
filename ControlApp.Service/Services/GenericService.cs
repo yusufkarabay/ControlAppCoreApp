@@ -1,4 +1,5 @@
-﻿using ControlApp.Core.Repositories;
+﻿using ControlApp.Core.Entities.Abstract;
+using ControlApp.Core.Repositories;
 using ControlApp.Core.Services;
 using ControlApp.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;

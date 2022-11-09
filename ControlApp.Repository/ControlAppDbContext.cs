@@ -60,5 +60,10 @@ namespace ControlApp.Repository
 
             return await base.SaveChangesAsync(cancellationToken);
         }
+
+        internal Task<object> FindAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

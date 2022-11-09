@@ -10,6 +10,7 @@ namespace ControlApp.Repository.UnitofWorks
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ControlAppDbContext _controlAppDbContext;   
+
         public UnitOfWork(ControlAppDbContext controlAppDbContext)
         {
             _controlAppDbContext = controlAppDbContext; 
