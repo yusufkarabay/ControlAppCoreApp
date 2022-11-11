@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlApp.Service", "Contr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlApp.Repository", "ControlApp.Repository\ControlApp.Repository.csproj", "{572C95BB-E015-46C9-988A-4629781683F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlAppUI", "ControlAppUI\ControlAppUI.csproj", "{D0160233-7EA0-4345-B84F-54ECD010F4AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlAppUICore", "ControlAppUI\ControlAppUICore.csproj", "{D0160233-7EA0-4345-B84F-54ECD010F4AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

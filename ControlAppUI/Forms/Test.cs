@@ -1,4 +1,5 @@
 using AutoMapper;
+using ControlApp.Core.DTOs;
 using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
 using ControlApp.Core.Services;
@@ -7,7 +8,7 @@ using ControlApp.Repository;
 using ControlApp.Repository.Repositories;
 using ControlApp.Repository.UnitofWorks;
 using ControlApp.Service.Services;
-using Microsoft.Extensions.Logging;
+
 
 namespace ControlAppUI
 {
@@ -26,8 +27,9 @@ namespace ControlAppUI
             var db = new ControlAppDbContext();
             authorityRepository= new AuthorityRepository(db);
             unitOfWork = new UnitOfWork(db);
-            _authorityService = new AuthorityService(authorityRepository, unitOfWork, mapper, authorityRepository);
+            _authorityService = new AuthorityService(authorityRepository, unitOfWork);
             _genericService= new GenericService<Authority>(authorityRepository, unitOfWork);
+
             InitializeComponent();
 
         }
@@ -37,25 +39,37 @@ namespace ControlAppUI
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var auth = new Authority();
-                auth.Name=textBox1.Text;
-                if (textBox1.Text=="")
-                {
-                    auth.Name=null;
-                }
-                await _genericService.AddAsync(auth);
-            }
-            catch (Exception)
-            {
 
-                var a= new NullReferenceException("Name cannot be null").Message.ToString();
-                MessageBox.Show(a);
+            var auth = new Authority();
+            auth.Name=textBox1.Text;
+            if (textBox1.Text=="")
+            {
+                auth.Name=null;
             }
+
+            var addedAuth = await _genericService.AddAsync(auth);
+            if (addedAuth.Item2 == null)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityDto>()).CreateMapper();
+                var returnAuth = mapper.Map<AuthorityDto>(addedAuth.Item1);
+                dataGridView1.DataSource = returnAuth.Name;
+
+            }
+            else
+            {
+                MessageBox.Show("Kayýt Baþarýsýz");
+            }
+
+
         }
 
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            var getDepartment = await _genericService.GetAllAsync();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityDto>()).CreateMapper();
+            var returnAuth = mapper.Map<List<AuthorityDto>>(getDepartment);
+            dataGridView1.DataSource= returnAuth;
 
-
+        }
     }
 }
