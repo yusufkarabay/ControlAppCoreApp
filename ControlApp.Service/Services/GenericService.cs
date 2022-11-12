@@ -1,6 +1,8 @@
-﻿using ControlApp.Core.Repositories;
+﻿using ControlApp.Core.Entities.Abstract;
+using ControlApp.Core.Repositories;
 using ControlApp.Core.Services;
 using ControlApp.Core.UnitOfWorks;
+using ControlApp.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,13 +24,19 @@ namespace ControlApp.Service.Services
             _unitOfWork=unitOfWork;
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<(T, Exception)> AddAsync(T entity)
         {
-            await _genericRepository.AddAsync(entity);
-            await _unitOfWork.CommitAsync();
-            return entity;
+            try
+            {
+                await _genericRepository.AddAsync(entity);
+                await _unitOfWork.CommitAsync();
+                return (entity, null);
+            }
+            catch (Exception ex)
+            {
+                return (null, ex);
+            }
         }
-
         public async Task DeleteAsync(T entity)
         {
             _genericRepository.Delete(entity);

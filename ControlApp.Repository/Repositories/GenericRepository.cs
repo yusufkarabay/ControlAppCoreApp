@@ -11,9 +11,10 @@ namespace ControlApp.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        //readonly'e yalnızca burada ya da constructor'da değer ataması yapılmaktadır
+      
         protected readonly ControlAppDbContext _dbContext;
         protected readonly DbSet<T> _dbSet;
+       // protected virtual IQueryable<T> _dbSet => _dbContext.Set<T>().AsNoTracking();
 
         public GenericRepository(ControlAppDbContext dbContext)
         {
@@ -23,19 +24,20 @@ namespace ControlApp.Repository.Repositories
 
         public async Task AddAsync(T entity)
         {
-           await _dbSet.AddAsync(entity);   
+           await _dbContext.AddAsync(entity);   
         }
 
       
 
         public async Task<T> ByEmployee(string name)
         {
-            return await _dbSet.FindAsync(name);
+              return await _dbSet.FindAsync(name);
+          
         }
 
         public  void Delete(T entity)
         {
-           _dbSet.Remove(entity);
+           _dbContext.Remove(entity);
         }
         
 
@@ -46,12 +48,13 @@ namespace ControlApp.Repository.Repositories
 
         public async Task<T> GetByIdAsync(Guid id)
         {
-           return await _dbSet.FindAsync(id);
+              return await _dbSet.FindAsync(id);
+           
         }
 
         public void Update(T entity)
         {
-           _dbSet.Update(entity);   
+            _dbContext.Update(entity);   
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)

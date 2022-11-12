@@ -958,6 +958,9 @@ namespace ControlApp.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AuthorityId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1010,6 +1013,8 @@ namespace ControlApp.Repository.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorityId");
 
                     b.ToTable("Users");
                 });
@@ -1081,6 +1086,17 @@ namespace ControlApp.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("ControlApp.Core.Entities.Abstract.User", b =>
+                {
+                    b.HasOne("ControlApp.Core.Entities.Abstract.Authority", "Authority")
+                        .WithMany()
+                        .HasForeignKey("AuthorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Authority");
                 });
 
             modelBuilder.Entity("ControlApp.Core.Entities.Abstract.Contract", b =>
