@@ -190,7 +190,7 @@
             this.gbCabinet.Size = new System.Drawing.Size(767, 255);
             this.gbCabinet.TabIndex = 24;
             this.gbCabinet.TabStop = false;
-            this.gbCabinet.Text = "Teslim Edilmiş Çekmeceler";
+            this.gbCabinet.Text = "Teslim Edilmiş Dolaplar";
             // 
             // dgvCabinet
             // 
@@ -282,13 +282,14 @@
             this.Controls.Add(this.btnCabinetDelivery);
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.gbSearchInfo);
-            this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CabinetForm";
             this.Text = "Control App";
+            this.Load += new System.EventHandler(this.CabinetForm_Load);
             this.gbCabinet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCabinet)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

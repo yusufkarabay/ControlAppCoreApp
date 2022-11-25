@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             this.pnlLeftMenu = new System.Windows.Forms.Panel();
-            this.btnWorkSteps = new System.Windows.Forms.Button();
             this.btnPasswordNote = new System.Windows.Forms.Button();
             this.pnlActive = new System.Windows.Forms.Panel();
             this.btnUserName = new System.Windows.Forms.Button();
@@ -59,7 +58,6 @@
             // pnlLeftMenu
             // 
             this.pnlLeftMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
-            this.pnlLeftMenu.Controls.Add(this.btnWorkSteps);
             this.pnlLeftMenu.Controls.Add(this.btnPasswordNote);
             this.pnlLeftMenu.Controls.Add(this.pnlActive);
             this.pnlLeftMenu.Controls.Add(this.btnUserName);
@@ -80,22 +78,6 @@
             this.pnlLeftMenu.Name = "pnlLeftMenu";
             this.pnlLeftMenu.Size = new System.Drawing.Size(180, 768);
             this.pnlLeftMenu.TabIndex = 0;
-            // 
-            // btnWorkSteps
-            // 
-            this.btnWorkSteps.FlatAppearance.BorderSize = 0;
-            this.btnWorkSteps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWorkSteps.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnWorkSteps.ForeColor = System.Drawing.Color.LightGray;
-            this.btnWorkSteps.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWorkSteps.Location = new System.Drawing.Point(13, 664);
-            this.btnWorkSteps.Name = "btnWorkSteps";
-            this.btnWorkSteps.Size = new System.Drawing.Size(164, 34);
-            this.btnWorkSteps.TabIndex = 13;
-            this.btnWorkSteps.Text = "      İş Adımları";
-            this.btnWorkSteps.UseVisualStyleBackColor = true;
-            this.btnWorkSteps.Visible = false;
-            this.btnWorkSteps.Click += new System.EventHandler(this.btnWorkSteps_Click);
             // 
             // btnPasswordNote
             // 
@@ -459,6 +441,5 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnPasswordNote;
-        private System.Windows.Forms.Button btnWorkSteps;
     }
 }

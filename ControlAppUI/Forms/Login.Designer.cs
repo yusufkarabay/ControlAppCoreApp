@@ -78,7 +78,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(256, 19);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.Text = "123456";
+            this.txtPassword.Text = "1";
             this.txtPassword.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPassword_MouseClick);
             // 
             // LnkForgot
@@ -105,6 +105,7 @@
             this.mtxtTC.Name = "mtxtTC";
             this.mtxtTC.Size = new System.Drawing.Size(256, 19);
             this.mtxtTC.TabIndex = 1;
+            this.mtxtTC.Text = "11111111110";
             this.mtxtTC.ValidatingType = typeof(int);
             this.mtxtTC.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtTC_MaskInputRejected);
             this.mtxtTC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mtxtTC_MouseClick);
@@ -116,7 +117,7 @@
             this.lblTime.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.lblTime.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTime.ForeColor = System.Drawing.Color.White;
-            this.lblTime.Location = new System.Drawing.Point(108, 23);
+            this.lblTime.Location = new System.Drawing.Point(146, 23);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(58, 20);
             this.lblTime.TabIndex = 8;

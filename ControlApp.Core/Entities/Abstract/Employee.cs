@@ -17,8 +17,7 @@ namespace ControlApp.Core.Entities.Abstract
         public DateTime? BirthDate { get; set; }
         public string? Adress { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Mail { get; set; }
-        public bool IsDeleted { get; set; } = false;        
+        public string? Mail { get; set; }        
         public Guid? DepartmentId { get; set; }
         [JsonIgnore]
         [IgnoreDataMember]

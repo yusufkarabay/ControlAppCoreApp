@@ -19,7 +19,7 @@ namespace ControlAppUI
         private readonly IGenericRepository<Authority> _genericRepository;
         private readonly IAuthorityRepository authorityRepository;
         private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
+       
 
 
         public Test()
