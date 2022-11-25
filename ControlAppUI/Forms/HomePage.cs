@@ -8,6 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using ControlApp.Core.DTOs;
+using AutoMapper;
+using Microsoft.VisualBasic.Logging;
+using ControlApp.Core.Entities.Abstract;
+using ControlApp.Core.Repositories;
+using ControlApp.Core.Services;
+using ControlApp.Core.UnitOfWorks;
+using ControlApp.Repository.Repositories;
+using ControlApp.Repository.UnitofWorks;
+using ControlApp.Repository;
+using ControlApp.Service.Services;
 
 namespace ControlAppDesktop.Forms
 {
@@ -25,12 +36,23 @@ namespace ControlAppDesktop.Forms
           int nWidthEllipse,
           int nHeightEllipse
       );
-        public object[] infos;
+
+        public Guid userId=Guid.Empty;
+
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IUserRepository userRepository;
+        private readonly IUserService userService;
         public HomePage()
         {
+
+            var db = new ControlAppDbContext();
+            userRepository = new UserRepoistory(db);
+            unitOfWork = new UnitOfWork(db);
+            userService = new UserService(userRepository, unitOfWork);
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
 
         }
 
@@ -42,13 +64,27 @@ namespace ControlAppDesktop.Forms
         {
             pnlActive.Visible = true;
         }
-        public void homePage_Load(object sender, EventArgs e)
+        public async void homePage_Load(object sender, EventArgs e)
         {
             pnlActive.Visible = false;
             lblTime.Text = DateTime.Now.ToString("f");
-            btnUserName.Text = "yusuf".ToString();
+            var userInfo = await userService.GetByIdAsync(userId);
+            if (userInfo.Item1!=null)
+            {
+                btnUserName.Text = userInfo.Item1.Name + " " + userInfo.Item1.Surname;
+            }
+            else
+            {
+                MessageBox.Show("Giriş yapan personel bilgilerine ulaşılamadı.Lüfen sistem yöneticisine başvurunuz",
+                     "Personel Bilgisi Hatası",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+                btnUserName.Text="Ad Soyad";
+            }
+
 
             btnAdminForm.Visible=true;
+
 
         }
         public void FormGet(Form form)
@@ -68,6 +104,7 @@ namespace ControlAppDesktop.Forms
             LeftWhitePanel(btnSentry);
             pnlCenter.Controls.Clear();
             SentryForm sentryForm = new SentryForm();
+            sentryForm.userId = userId;
             FormGet(sentryForm);
         }
 
@@ -135,9 +172,9 @@ namespace ControlAppDesktop.Forms
 
         private void btnCabinet_Click(object sender, EventArgs e)
         {
-            LeftWhitePanel(btnCabinet); pnlCenter.Controls.Clear();
+            LeftWhitePanel(btnCabinet);
+            pnlCenter.Controls.Clear();
             CabinetForm cabinetForm = new CabinetForm();
-
             FormGet(cabinetForm);
         }
 
@@ -214,13 +251,6 @@ namespace ControlAppDesktop.Forms
             FormGet(passwordNotesForm);
         }
 
-        private void btnWorkSteps_Click(object sender, EventArgs e)
-        {
-            LeftWhitePanel(btnWorkSteps);
-            pnlCenter.Controls.Clear();
-            WorkStepsForm workStepsForm = new WorkStepsForm();
 
-            FormGet(workStepsForm);
-        }
     }
 }

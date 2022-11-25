@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Core.Entities.Abstract
 {
-    public class SentryDone : BaseEntity, ICreatedEmployee
+    public class SentryDone : BaseEntity
     {
         public string Done { get; set; }
-        public string CreatedEmployee { get; set; }
-        public DateTime CreatedTime { get; set; }
+        public Guid UserId { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public User User { get; set; }
+
         public Guid DepartmentId { get; set; }
         [JsonIgnore]
         [IgnoreDataMember]

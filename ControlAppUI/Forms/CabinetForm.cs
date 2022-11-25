@@ -5,7 +5,7 @@
        
         public CabinetForm()
         {
-           
+            InitializeComponent();
         }
 
         private void btnCabinetDelivery_Click(object sender, EventArgs e)
@@ -53,6 +53,11 @@
         private void txtDrawerSearch_MouseClick(object sender, MouseEventArgs e)
         {
             txtDrawerSearch.Text = "";
+        }
+
+        private void CabinetForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,8 +13,7 @@ namespace ControlApp.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<SentryToDo> builder)
         {
-            builder.Property(x => x.CreatedEmployee).IsRequired().HasMaxLength(80);
-            builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
+           
 
         }
     }

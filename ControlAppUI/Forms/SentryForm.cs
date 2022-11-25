@@ -1,60 +1,171 @@
-﻿namespace ControlAppDesktop.Forms
+﻿using AutoMapper;
+using ControlApp.Core.DTOs;
+using ControlApp.Core.Entities.Abstract;
+using ControlApp.Core.Repositories;
+using ControlApp.Core.Services;
+using ControlApp.Core.UnitOfWorks;
+using ControlApp.Repository;
+using ControlApp.Repository.Repositories;
+using ControlApp.Repository.UnitofWorks;
+using ControlApp.Service.Services;
+using Microsoft.VisualBasic;
+
+namespace ControlAppDesktop.Forms
 {
     public partial class SentryForm : Form
     {
-
-
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ISentryDoneRepository sentryDoneRepository;
+        private readonly ISentryToDoRepository sentryToDoRepository;
+        private readonly ISentryDoneService sentryDoneService;
+        private readonly IUserRepository userRepository;
+        private readonly IUserService userService;
+        private readonly ISentryToDoService sentryToDoService;
+        public Guid userId;
         public SentryForm()
         {
+            var db = new ControlAppDbContext();
+            sentryDoneRepository = new SentryDoneRepository(db);
+            unitOfWork = new UnitOfWork(db);
+            sentryDoneService = new SentryDoneService(sentryDoneRepository, unitOfWork);
+            userRepository = new UserRepoistory(db);
+            userService = new UserService(userRepository, unitOfWork);
+            sentryToDoService=new SentryToDoService(sentryToDoRepository, unitOfWork);
             InitializeComponent();
-
-
         }
-
-        void DataGridSettings(DataGridView dataGridView)
+        async Task DataGridSettings(DataGridView dataGridView)
         {
             dataGridView.BorderStyle=BorderStyle.None;
             dataGridView.BackgroundColor=Color.LightGray;
             dataGridView.DefaultCellStyle.SelectionBackColor=Color.FromArgb(26, 110, 145);
             dataGridView.EnableHeadersVisualStyles=false;
 
-
         }
-        private void btnSentryListDone_Click(object sender, EventArgs e)
+        async Task DataGridSentryHeader()
         {
-            if (dgvSentry.Visible == true)
+            dgvSentry.Columns["Done"].HeaderText="Yapılan İşler";
+            dgvSentry.Columns["CreatedBy"].HeaderText="Oluşturan Personel";
+            dgvSentry.Columns["CreatedDate"].HeaderText ="Oluşturma Zamanı";
+            dgvSentry.Columns["UserId"].Visible=false;
+            dgvSentry.Columns["Id"].Visible=false;
+        }
+        async Task GetSentryByDate()
+        {
+            var userInfo = await userService.GetByIdAsync(userId);
+            var departmentId = Guid.Parse(userInfo.Item1.DepartmentId.ToString());
+            if (userInfo.Item1!=null)
             {
-                dgvSentryTodo.Visible = false;
+                var sentryDones = sentryDoneService.GetSentryDoneByDate(dtpSentry.Value.Date, departmentId);
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<SentryDone, SentryDoneDto>()).CreateMapper();
+                var returnSentry = mapper.Map<List<SentryDoneDto>>(sentryDones);
+                if (returnSentry.Count==0)
+                {
+                    MessageBox.Show("Seçilen tarihte işlem eklenmedi",
+                        "İşlem Yok",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+                dgvSentry.DataSource =returnSentry;
+                dgvSentry.Visible = true;
+                await DataGridSentryHeader();
             }
-            dgvSentry.Visible = true;
-
-         
-
-        }
-        private void btnSentryDoneAdd_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-
 
 
         }
-        private void btnSentryDoneUpdate_Click(object sender, EventArgs e)
+        private async void btnSentryListDone_Click(object sender, EventArgs e)
+        {
+            await GetSentryByDate();
+        }
+        private async void btnSentryDoneAdd_Click(object sender, EventArgs e)
+        {
+            if (rtbxSentry.Text==""|| rtbxSentry.Text==null||
+                rtbxSentry.Text=="Nöbet sırasında yapılan işler...")
+            {
+                MessageBox.Show("Nöbet Sırasında Yapılan İşler Boş Bırakılamaz",
+                    "Nöbet Sırasında Yapılan İşler Hatası",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            var sentryDone = new SentryDone();
+            var userInfo = await userService.GetByIdAsync(userId);
+
+            if (userInfo.Item1!=null)
+            {
+                sentryDone.Done = rtbxSentry.Text;
+                sentryDone.DepartmentId=Guid.Parse(userInfo.Item1.DepartmentId.ToString());
+                sentryDone.CreatedBy=userInfo.Item1.Name+" "+userInfo.Item1.Surname;
+                sentryDone.UserId=userId;
+                sentryDone.CreatedDate=dtpSentry.Value;
+                await sentryDoneService.AddAsync(sentryDone);
+                GetSentryByDate();
+                rtbxSentry.Text="Nöbet sırasında yapılan işler...";
+            }
+            else
+            {
+                MessageBox.Show("Giriş yapan personel bilgilerine ulaşılamadı.Lüfen sistem yöneticisine başvurunuz",
+                     "Personel Bilgisi Hatası",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+                return;
+            }
+        }
+        private async void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+
+
+            var selectedSentry = await sentryDoneService.GetByIdAsync(Guid.Parse(dgvSentry.SelectedRows[0].Cells["Id"].Value.ToString()));
+            var userInfo = await userService.GetByIdAsync(userId);
+
+            if (selectedSentry.UserId!=userInfo.Item1.Id)
+            {
+                MessageBox.Show("Seçilen işlemi güncelleyebilmek için giriş yapan kullanıcıya ait olmalıdır",
+                "Nöbet Sırasında Yapılan İşler Hatası",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
+            }
+            var sentrydone = Interaction.InputBox("Yapılan İşlem Güncellemesi", "İşlem Güncelleme", rtbxSentry.Text=dgvSentry.SelectedRows[0].Cells[0].Value.ToString());
+
+            if (selectedSentry.UserId==userInfo.Item1.Id)
+            {
+                selectedSentry.Done=sentrydone;
+                selectedSentry.CreatedDate=dtpSentry.Value;
+                await sentryDoneService.UpdateAsync(selectedSentry);
+                await GetSentryByDate();
+                rtbxSentry.Text="Nöbet sırasında yapılan işler...";
+            }
 
 
         }
-        private void yenileToolStripMenuItem_Click(object sender, EventArgs e)
+      
+        private async void yenileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            await GetSentryByDate();
         }
-        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var selectedSentry = await sentryDoneService.GetByIdAsync(Guid.Parse(dgvSentry.SelectedRows[0].Cells["Id"].Value.ToString()));
+            var userInfo = await userService.GetByIdAsync(userId);
 
+            if (selectedSentry.UserId!=userInfo.Item1.Id)
+            {
+                MessageBox.Show("Seçilen işlemi silebilmek için giriş yapan kullanıcıya ait olmalıdır",
+                "Nöbet Sırasında Yapılan İşler Hatası",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
+            }
+
+            if (selectedSentry.UserId==userInfo.Item1.Id)
+            {
+
+                await sentryDoneService.DeleteAsync(selectedSentry);
+                await GetSentryByDate();
+                rtbxSentry.Text="Nöbet sırasında yapılan işler...";
+            }
 
         }
         private void btnSentryListToDo_Click(object sender, EventArgs e)
@@ -62,8 +173,6 @@
 
 
         }
-
-
         private void gToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -82,37 +191,70 @@
         {
 
         }
-        private void SentryForm_Load(object sender, EventArgs e)
+        private async void SentryForm_Load(object sender, EventArgs e)
         {
+            await DataGridSettings(dgvSentry);
 
         }
-        private void btnSentryToDoAdd_Click(object sender, EventArgs e)
+        private async void btnSentryToDoAdd_Click(object sender, EventArgs e)
         {
+            if (rtbxSentryToDo.Text==""|| rtbxSentryToDo.Text==null||
+                rtbxSentryToDo.Text=="Takip edilecek işlemler...")
+            {
+                MessageBox.Show("Yapılacak İş Boş Bırakılamaz",
+                    "Yapılacak İş Hatası",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            var sentrytodo = new SentryToDo();
+            var userInfo = await userService.GetByIdAsync(userId);
 
+            if (userInfo.Item1!=null)
+            {
+                sentrytodo.ToDo = rtbxSentryToDo.Text;
+                sentrytodo.DepartmentId=Guid.Parse(userInfo.Item1.DepartmentId.ToString());
+                sentrytodo.CreatedBy=userInfo.Item1.Name+" "+userInfo.Item1.Surname;
+                sentrytodo.UserId=userId;
+                sentrytodo.CreatedDate=dtpSentry.Value;
+                await sentryToDoService.AddAsync(sentrytodo);
+               
+                rtbxSentry.Text="Takip edilecek işlemler...";
+            }
+            else
+            {
+                MessageBox.Show("Giriş yapan personel bilgilerine ulaşılamadı.Lüfen sistem yöneticisine başvurunuz",
+                     "Personel Bilgisi Hatası",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+                return;
+            }
         }
-
-
         private void rtbxSentry_MouseClick(object sender, MouseEventArgs e)
         {
-            rtbxSentry.Text = "";
-        }
+            if (rtbxSentry.Text=="Nöbet sırasında yapılan işler...")
+            {
+                rtbxSentry.Text = "";
+            }
 
+        }
         private void rtbxSentryToDo_MouseClick(object sender, MouseEventArgs e)
         {
-            rtbxSentryToDo.Text = "";
-            btnSentryToDoAdd.Enabled = true;
+            if (rtbxSentryToDo.Text=="Takip edilecek işlemler...")
+            {
+                rtbxSentryToDo.Text = "";
+            }
         }
-
-
-
-
         private void dgvSentry_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
+            rtbxSentry.Text=dgvSentry.SelectedRows[0].Cells[0].Value.ToString();
+        }
+        private void dgvSentryTodo_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
 
         }
-
-        private void dgvSentryTodo_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void rightMenuDone_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }

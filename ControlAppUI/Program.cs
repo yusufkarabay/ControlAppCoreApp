@@ -5,7 +5,7 @@ namespace ControlAppUI
 {
     internal static class Program
     {
-      
+
 
 
         [STAThread]
