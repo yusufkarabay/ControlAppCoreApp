@@ -18,14 +18,16 @@ namespace ControlAppDesktop.Forms
         private readonly ISentryDoneRepository sentryDoneRepository;
         private readonly ISentryToDoRepository sentryToDoRepository;
         private readonly ISentryDoneService sentryDoneService;
+        private readonly ISentryToDoService sentryToDoService;
         private readonly IUserRepository userRepository;
         private readonly IUserService userService;
-        private readonly ISentryToDoService sentryToDoService;
+
         public Guid userId;
         public SentryForm()
         {
             var db = new ControlAppDbContext();
             sentryDoneRepository = new SentryDoneRepository(db);
+            sentryToDoRepository= new SentryToDoRepository(db);
             unitOfWork = new UnitOfWork(db);
             sentryDoneService = new SentryDoneService(sentryDoneRepository, unitOfWork);
             userRepository = new UserRepoistory(db);
@@ -43,13 +45,13 @@ namespace ControlAppDesktop.Forms
         }
         async Task DataGridSentryHeader()
         {
-            dgvSentry.Columns["Done"].HeaderText="Yapılan İşler";
+            dgvSentry.Columns["Done"].HeaderText="Yapılacak İşler";
             dgvSentry.Columns["CreatedBy"].HeaderText="Oluşturan Personel";
             dgvSentry.Columns["CreatedDate"].HeaderText ="Oluşturma Zamanı";
             dgvSentry.Columns["UserId"].Visible=false;
             dgvSentry.Columns["Id"].Visible=false;
         }
-        async Task GetSentryByDate()
+        async Task GetSentryDoneByDate()
         {
             var userInfo = await userService.GetByIdAsync(userId);
             var departmentId = Guid.Parse(userInfo.Item1.DepartmentId.ToString());
@@ -71,11 +73,34 @@ namespace ControlAppDesktop.Forms
                 await DataGridSentryHeader();
             }
 
+        }
+        async Task GetSentryTodoByDate()
+        {
+            var userInfo = await userService.GetByIdAsync(userId);
+            var departmentId = Guid.Parse(userInfo.Item1.DepartmentId.ToString());
+            if (userInfo.Item1!=null)
+            {
+                var sentryTodoes = sentryToDoService.GetSentryToDoByDate(dtpSentry.Value.Date, departmentId);
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<SentryToDo, SentryToDoDto>()).CreateMapper();
+                var returnSentryTodo = mapper.Map<List<SentryToDoDto>>(sentryTodoes);
+                if (returnSentryTodo.Count==0)
+                {
+                    MessageBox.Show("Seçilen tarihte işlem eklenmedi",
+                        "İşlem Yok",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+                dgvSentry.DataSource =returnSentryTodo;
+                dgvSentry.Visible = true;
+                await DataGridSentryHeader();
+            }
+
 
         }
         private async void btnSentryListDone_Click(object sender, EventArgs e)
         {
-            await GetSentryByDate();
+            await GetSentryDoneByDate();
         }
         private async void btnSentryDoneAdd_Click(object sender, EventArgs e)
         {
@@ -99,7 +124,7 @@ namespace ControlAppDesktop.Forms
                 sentryDone.UserId=userId;
                 sentryDone.CreatedDate=dtpSentry.Value;
                 await sentryDoneService.AddAsync(sentryDone);
-                GetSentryByDate();
+                GetSentryDoneByDate();
                 rtbxSentry.Text="Nöbet sırasında yapılan işler...";
             }
             else
@@ -113,9 +138,6 @@ namespace ControlAppDesktop.Forms
         }
         private async void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-
             var selectedSentry = await sentryDoneService.GetByIdAsync(Guid.Parse(dgvSentry.SelectedRows[0].Cells["Id"].Value.ToString()));
             var userInfo = await userService.GetByIdAsync(userId);
 
@@ -134,16 +156,15 @@ namespace ControlAppDesktop.Forms
                 selectedSentry.Done=sentrydone;
                 selectedSentry.CreatedDate=dtpSentry.Value;
                 await sentryDoneService.UpdateAsync(selectedSentry);
-                await GetSentryByDate();
+                await GetSentryDoneByDate();
                 rtbxSentry.Text="Nöbet sırasında yapılan işler...";
             }
 
 
         }
-      
         private async void yenileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            await GetSentryByDate();
+            await GetSentryDoneByDate();
         }
         private async void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -163,14 +184,14 @@ namespace ControlAppDesktop.Forms
             {
 
                 await sentryDoneService.DeleteAsync(selectedSentry);
-                await GetSentryByDate();
+                await GetSentryDoneByDate();
                 rtbxSentry.Text="Nöbet sırasında yapılan işler...";
             }
 
         }
-        private void btnSentryListToDo_Click(object sender, EventArgs e)
+        private async void btnSentryListToDo_Click(object sender, EventArgs e)
         {
-
+            await GetSentryTodoByDate();
 
         }
         private void gToolStripMenuItem_Click(object sender, EventArgs e)
@@ -218,7 +239,7 @@ namespace ControlAppDesktop.Forms
                 sentrytodo.UserId=userId;
                 sentrytodo.CreatedDate=dtpSentry.Value;
                 await sentryToDoService.AddAsync(sentrytodo);
-               
+
                 rtbxSentry.Text="Takip edilecek işlemler...";
             }
             else
