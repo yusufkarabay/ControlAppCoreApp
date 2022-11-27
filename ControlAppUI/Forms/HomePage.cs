@@ -38,6 +38,7 @@ namespace ControlAppDesktop.Forms
       );
 
         public Guid userId=Guid.Empty;
+        public bool isCollapsed;
 
         private readonly IUnitOfWork unitOfWork;
         private readonly IUserRepository userRepository;
@@ -98,6 +99,12 @@ namespace ControlAppDesktop.Forms
             pnlActive.Visible = true;
             pnlActive.Height = button.Height;
             pnlActive.Top = button.Top;
+        }
+        void LeftWhitePaneltoPanel(Panel panel)
+        {
+            pnlActive.Visible = true;
+            pnlActive.Height = panel.MinimumSize.Height;
+            pnlActive.Top = panel.Top;
         }
         public void btnSentry_Click(object sender, EventArgs e)
         {
@@ -251,6 +258,41 @@ namespace ControlAppDesktop.Forms
             FormGet(passwordNotesForm);
         }
 
+        private void timerSentry_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed)
+            {
+                pnlSentry.Width+=10;
+                if (pnlSentry.Size==pnlSentry.MaximumSize)
+                {
+                    timerSentry.Stop();
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                pnlSentry.Width-=10;
+                if (pnlSentry.Size==pnlSentry.MinimumSize)
+                {
+                    timerSentry.Stop();
+                    isCollapsed = true;
+                }
+            }
+        }
 
+        private void btnSentrySub_Click(object sender, EventArgs e)
+        {
+            timerSentry.Start();
+            LeftWhitePaneltoPanel(pnlSentry);
+            pnlCenter.Controls.Clear();
+            //SentryForm sentryForm = new SentryForm();
+            //sentryForm.userId = userId;
+            //FormGet(sentryForm);
+        }
+
+        private void pnlLeftMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
