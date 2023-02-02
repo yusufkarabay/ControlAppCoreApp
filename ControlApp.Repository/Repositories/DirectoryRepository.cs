@@ -1,4 +1,5 @@
 ﻿using ControlApp.Core.Repositories;
+using ControlApp.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace ControlApp.Repository.Repositories
 {
     public class DirectoryRepository : GenericRepository<Core.Entities.Abstract.Directory>, IDirectoryRepository
     {
-        public DirectoryRepository(ControlAppDbContext dbContext) : base(dbContext)
+        private readonly IUnitOfWork unitOfWork;
+        public DirectoryRepository(ControlAppDbContext dbContext, IUnitOfWork unitOfWork) : base(dbContext, unitOfWork)
         {
         }
     }

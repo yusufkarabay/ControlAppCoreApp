@@ -37,7 +37,7 @@ namespace ControlAppDesktop.Forms
           int nHeightEllipse
       );
 
-        public Guid userId=Guid.Empty;
+        public Guid userId = Guid.Empty;
         public bool isCollapsed;
 
         private readonly IUnitOfWork unitOfWork;
@@ -47,7 +47,7 @@ namespace ControlAppDesktop.Forms
         {
 
             var db = new ControlAppDbContext();
-            userRepository = new UserRepoistory(db);
+            userRepository = new UserRepoistory(db, unitOfWork);
             unitOfWork = new UnitOfWork(db);
             userService = new UserService(userRepository, unitOfWork);
             InitializeComponent();
@@ -108,11 +108,11 @@ namespace ControlAppDesktop.Forms
         }
         public void btnSentry_Click(object sender, EventArgs e)
         {
-            LeftWhitePanel(btnSentry);
-            pnlCenter.Controls.Clear();
-            SentryForm sentryForm = new SentryForm();
-            sentryForm.userId = userId;
-            FormGet(sentryForm);
+            //LeftWhitePanel(btnSentry);
+            //pnlCenter.Controls.Clear();
+            //SentryForm sentryForm = new SentryForm();
+            //sentryForm.userId = userId;
+            //FormGet(sentryForm);
         }
 
         public void btnInventory_Click(object sender, EventArgs e)
@@ -120,6 +120,7 @@ namespace ControlAppDesktop.Forms
             LeftWhitePanel(btnInventory);
             pnlCenter.Controls.Clear();
             InventoryForm inventoryForm = new InventoryForm();
+            inventoryForm.userId=userId;
             FormGet(inventoryForm);
 
         }
@@ -228,8 +229,6 @@ namespace ControlAppDesktop.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-
-
         private void btnAdminForm_Click(object sender, EventArgs e)
         {
 
@@ -258,41 +257,14 @@ namespace ControlAppDesktop.Forms
             FormGet(passwordNotesForm);
         }
 
-        private void timerSentry_Tick(object sender, EventArgs e)
-        {
-            if (isCollapsed)
-            {
-                pnlSentry.Width+=10;
-                if (pnlSentry.Size==pnlSentry.MaximumSize)
-                {
-                    timerSentry.Stop();
-                    isCollapsed = false;
-                }
-            }
-            else
-            {
-                pnlSentry.Width-=10;
-                if (pnlSentry.Size==pnlSentry.MinimumSize)
-                {
-                    timerSentry.Stop();
-                    isCollapsed = true;
-                }
-            }
-        }
-
         private void btnSentrySub_Click(object sender, EventArgs e)
         {
-            timerSentry.Start();
-            LeftWhitePaneltoPanel(pnlSentry);
+            LeftWhitePanel(btnSentrySub);
             pnlCenter.Controls.Clear();
-            //SentryForm sentryForm = new SentryForm();
-            //sentryForm.userId = userId;
-            //FormGet(sentryForm);
+            SentryForm sentryForm = new SentryForm();
+            sentryForm.userId = userId;
+            FormGet(sentryForm);
         }
 
-        private void pnlLeftMenu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

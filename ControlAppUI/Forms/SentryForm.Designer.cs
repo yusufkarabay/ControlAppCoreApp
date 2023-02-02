@@ -121,7 +121,7 @@
             this.refreshToolStripMenuItem});
             this.rightMenuDone.Name = "contextMenuStrip1";
             this.rightMenuDone.Size = new System.Drawing.Size(205, 70);
-            this.rightMenuDone.Opening += new System.ComponentModel.CancelEventHandler(this.rightMenuDone_Opening);
+         
             // 
             // updateToolStripMenuItem
             // 

@@ -1,5 +1,6 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
+using ControlApp.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace ControlApp.Repository.Repositories
 {
     public class PasswordNoteRepository : GenericRepository<PasswordNote>, IPassworNoteRepository
     {
-        public PasswordNoteRepository(ControlAppDbContext dbContext) : base(dbContext)
+        private readonly IUnitOfWork unitOfWork;
+        public PasswordNoteRepository(ControlAppDbContext dbContext, IUnitOfWork unitOfWork) : base(dbContext, unitOfWork)
         {
         }
     }

@@ -32,9 +32,9 @@ namespace ControlAppUICore.Forms
         {
             var db = new ControlAppDbContext();
 
-            sentryToDoRepository= new SentryToDoRepository(db);
+            sentryToDoRepository= new SentryToDoRepository(db, unitOfWork);
             unitOfWork = new UnitOfWork(db);
-            userRepository = new UserRepoistory(db);
+            userRepository = new UserRepoistory(db, unitOfWork);
             userService = new UserService(userRepository, unitOfWork);
             sentryToDoService=new SentryToDoService(sentryToDoRepository, unitOfWork);
             InitializeComponent();

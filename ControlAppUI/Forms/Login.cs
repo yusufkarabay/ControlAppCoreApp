@@ -33,7 +33,7 @@ namespace ControlAppDesktop
         public Login()
         {
             var db = new ControlAppDbContext();
-            userRepository = new UserRepoistory(db);
+            userRepository = new UserRepoistory(db, unitOfWork);
             unitOfWork = new UnitOfWork(db);
             userService = new UserService(userRepository, unitOfWork);
             InitializeComponent();

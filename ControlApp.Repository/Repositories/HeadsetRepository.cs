@@ -1,5 +1,6 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
+using ControlApp.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace ControlApp.Repository.Repositories
 {
     public class HeadsetRepository : GenericRepository<Headset>, IHeadsetRepository
     {
-        public HeadsetRepository(ControlAppDbContext dbContext) : base(dbContext)
+        private readonly IUnitOfWork unitOfWork;
+        public HeadsetRepository(ControlAppDbContext dbContext, IUnitOfWork unitOfWork) : base(dbContext, unitOfWork)
         {
         }
     }

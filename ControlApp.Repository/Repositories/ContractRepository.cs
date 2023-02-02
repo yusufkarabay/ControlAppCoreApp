@@ -1,5 +1,7 @@
 ﻿using ControlApp.Core.Entities.Abstract;
 using ControlApp.Core.Repositories;
+using ControlApp.Core.UnitOfWorks;
+using ControlApp.Repository.UnitofWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,8 @@ namespace ControlApp.Repository.Repositories
 {
     public class ContractRepository : GenericRepository<Contract>, IContractRepository
     {
-        public ContractRepository(ControlAppDbContext dbContext) : base(dbContext)
+        private readonly IUnitOfWork unitOfWork;
+        public ContractRepository(ControlAppDbContext dbContext, IUnitOfWork unitOfWork) : base(dbContext, unitOfWork)
         {
         }
     }

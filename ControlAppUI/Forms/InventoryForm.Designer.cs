@@ -48,7 +48,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblInventoryName = new System.Windows.Forms.Label();
             this.lblInventorySeriNo = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpInventory = new System.Windows.Forms.DateTimePicker();
             this.btnList = new System.Windows.Forms.Button();
             this.btnInventoryWeb = new System.Windows.Forms.Button();
             this.btnAllList = new System.Windows.Forms.Button();
@@ -67,7 +67,7 @@
             // grpInventory
             // 
             this.grpInventory.Controls.Add(this.dgvInventory);
-            this.grpInventory.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.grpInventory.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.grpInventory.Location = new System.Drawing.Point(69, 310);
             this.grpInventory.Name = "grpInventory";
             this.grpInventory.Size = new System.Drawing.Size(1014, 272);
@@ -141,7 +141,7 @@
             this.grpInventoryInfo.Controls.Add(this.btnAdd);
             this.grpInventoryInfo.Controls.Add(this.lblInventoryName);
             this.grpInventoryInfo.Controls.Add(this.lblInventorySeriNo);
-            this.grpInventoryInfo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.grpInventoryInfo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.grpInventoryInfo.Location = new System.Drawing.Point(72, 38);
             this.grpInventoryInfo.Name = "grpInventoryInfo";
             this.grpInventoryInfo.Size = new System.Drawing.Size(345, 227);
@@ -160,6 +160,7 @@
             // txtbxAmount
             // 
             this.txtbxAmount.Location = new System.Drawing.Point(105, 96);
+            this.txtbxAmount.MaxLength = 9;
             this.txtbxAmount.Name = "txtbxAmount";
             this.txtbxAmount.Size = new System.Drawing.Size(206, 21);
             this.txtbxAmount.TabIndex = 4;
@@ -242,19 +243,19 @@
             this.lblInventorySeriNo.TabIndex = 0;
             this.lblInventorySeriNo.Text = "Seri No :";
             // 
-            // dateTimePicker1
+            // dtpInventory
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(638, 41);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker1.TabIndex = 6;
+            this.dtpInventory.Location = new System.Drawing.Point(638, 41);
+            this.dtpInventory.Name = "dtpInventory";
+            this.dtpInventory.Size = new System.Drawing.Size(200, 21);
+            this.dtpInventory.TabIndex = 6;
             // 
             // btnList
             // 
             this.btnList.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnList.FlatAppearance.BorderSize = 0;
             this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnList.Location = new System.Drawing.Point(703, 68);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(75, 23);
@@ -268,7 +269,7 @@
             this.btnInventoryWeb.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnInventoryWeb.FlatAppearance.BorderSize = 0;
             this.btnInventoryWeb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryWeb.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnInventoryWeb.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnInventoryWeb.Location = new System.Drawing.Point(1033, 12);
             this.btnInventoryWeb.Name = "btnInventoryWeb";
             this.btnInventoryWeb.Size = new System.Drawing.Size(124, 23);
@@ -282,7 +283,7 @@
             this.btnAllList.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnAllList.FlatAppearance.BorderSize = 0;
             this.btnAllList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnAllList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAllList.Location = new System.Drawing.Point(969, 281);
             this.btnAllList.Name = "btnAllList";
             this.btnAllList.Size = new System.Drawing.Size(111, 23);
@@ -316,7 +317,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(460, 222);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 15);
@@ -326,7 +327,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(805, 223);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 15);
@@ -349,10 +350,10 @@
             this.Controls.Add(this.btnAllList);
             this.Controls.Add(this.btnInventoryWeb);
             this.Controls.Add(this.btnList);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpInventory);
             this.Controls.Add(this.grpInventoryInfo);
             this.Controls.Add(this.grpInventory);
-            this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InventoryForm";
@@ -381,7 +382,7 @@
         private System.Windows.Forms.TextBox txtbxAmount;
         private System.Windows.Forms.TextBox txtbxInventoryName;
         private System.Windows.Forms.TextBox txtbxInventorySeriNo;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpInventory;
         private System.Windows.Forms.Button btnList;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
