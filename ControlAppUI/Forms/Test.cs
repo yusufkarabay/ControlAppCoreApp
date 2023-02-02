@@ -25,7 +25,7 @@ namespace ControlAppUI
         public Test()
         {
             var db = new ControlAppDbContext();
-            authorityRepository= new AuthorityRepository(db);
+            authorityRepository= new AuthorityRepository(db, unitOfWork);
             unitOfWork = new UnitOfWork(db);
             _authorityService = new AuthorityService(authorityRepository, unitOfWork);
             _genericService= new GenericService<Authority>(authorityRepository, unitOfWork);

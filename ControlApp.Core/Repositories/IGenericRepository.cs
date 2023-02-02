@@ -16,9 +16,5 @@ namespace ControlApp.Core.Repositories
         void Update(T entity);
         void Delete(T entity);
         Task<T> ByEmployee(string name);
-       
-
-
-
     }
 }

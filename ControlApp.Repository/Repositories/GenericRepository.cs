@@ -1,4 +1,5 @@
 ﻿using ControlApp.Core.Repositories;
+using ControlApp.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,15 @@ namespace ControlApp.Repository.Repositories
       
         protected readonly ControlAppDbContext _dbContext;
         protected readonly DbSet<T> _dbSet;
-       // protected virtual IQueryable<T> _dbSet => _dbContext.Set<T>().AsNoTracking();
+        protected readonly IUnitOfWork unitOfWork;
 
-        public GenericRepository(ControlAppDbContext dbContext)
+        // protected virtual IQueryable<T> _dbSet => _dbContext.Set<T>().AsNoTracking();
+
+        public GenericRepository(ControlAppDbContext dbContext, IUnitOfWork unitOfWork)
         {
             _dbContext=dbContext;
             _dbSet=_dbContext.Set<T>();
+            this.unitOfWork=unitOfWork;
         }
 
         public async Task AddAsync(T entity)
@@ -54,7 +58,8 @@ namespace ControlApp.Repository.Repositories
 
         public void Update(T entity)
         {
-            _dbContext.Update(entity);   
+            _dbContext.Update(entity);
+            unitOfWork.Commit();
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)

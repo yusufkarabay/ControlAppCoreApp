@@ -20,7 +20,7 @@ namespace ControlAppDesktop.Forms
         public RegisterForm()
         {
             var db = new ControlAppDbContext();
-            userRepository = new UserRepoistory(db);
+            userRepository = new UserRepoistory(db, unitOfWork);
             unitOfWork = new UnitOfWork(db);
             userService = new UserService(userRepository, unitOfWork);
             InitializeComponent();

@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace ControlApp.Core.Services
 {
-    public interface IInventoryService:IGenericService<Inventory>
+    public interface IInventoryService : IGenericService<Inventory>
     {
+        Task<List<Inventory>> GetAllInventory(Guid departmentId);
+        Task<List<Inventory>> GetAddedDateInventory(Guid departmentId, DateTime dateTime);
+
     }
 }

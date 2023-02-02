@@ -14,10 +14,10 @@ namespace ControlApp.Repository.Configurations
         public void Configure(EntityTypeBuilder<Inventory> builder)
         {
             builder.Property(x => x.SerialNumber).IsRequired().HasMaxLength(80);
-            builder.Property(x => x.CreatedTime).IsRequired().HasColumnType("Date");
+            builder.Property(x => x.CreatedDate).HasColumnType("date");
             builder.Property(x => x.Name).HasMaxLength(80);
             builder.Property(x => x.Info).HasMaxLength(256);
-            builder.Property(x => x.CreatedEmployee).HasMaxLength(80);
+
 
 
         }

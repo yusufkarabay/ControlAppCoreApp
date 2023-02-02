@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             this.pnlLeftMenu = new System.Windows.Forms.Panel();
-            this.pnlActive = new System.Windows.Forms.Panel();
-            this.pnlSentry = new System.Windows.Forms.Panel();
             this.btnSentrySub = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
-            this.btnUserName = new System.Windows.Forms.Button();
             this.btnEmployee = new System.Windows.Forms.Button();
             this.btnPasswordNote = new System.Windows.Forms.Button();
             this.btnRequest = new System.Windows.Forms.Button();
@@ -49,24 +43,22 @@
             this.btnIdCard = new System.Windows.Forms.Button();
             this.btnCabinet = new System.Windows.Forms.Button();
             this.btnDrawer = new System.Windows.Forms.Button();
-            this.btnSentry = new System.Windows.Forms.Button();
+            this.pnlActive = new System.Windows.Forms.Panel();
+            this.btnUserName = new System.Windows.Forms.Button();
             this.pnlTopMenu = new System.Windows.Forms.Panel();
             this.btnAdminForm = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.pnlCenter = new System.Windows.Forms.Panel();
-            this.timerSentry = new System.Windows.Forms.Timer(this.components);
             this.pnlLeftMenu.SuspendLayout();
-            this.pnlSentry.SuspendLayout();
             this.pnlTopMenu.SuspendLayout();
-            this.pnlCenter.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeftMenu
             // 
             this.pnlLeftMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
-            this.pnlLeftMenu.Controls.Add(this.pnlSentry);
+            this.pnlLeftMenu.Controls.Add(this.btnSentrySub);
             this.pnlLeftMenu.Controls.Add(this.btnInventory);
             this.pnlLeftMenu.Controls.Add(this.btnEmployee);
             this.pnlLeftMenu.Controls.Add(this.btnPasswordNote);
@@ -86,33 +78,10 @@
             this.pnlLeftMenu.Name = "pnlLeftMenu";
             this.pnlLeftMenu.Size = new System.Drawing.Size(180, 768);
             this.pnlLeftMenu.TabIndex = 0;
-            this.pnlLeftMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLeftMenu_Paint);
-            // 
-            // pnlActive
-            // 
-            this.pnlActive.BackColor = System.Drawing.Color.Gainsboro;
-            this.pnlActive.Location = new System.Drawing.Point(0, 55);
-            this.pnlActive.Name = "pnlActive";
-            this.pnlActive.Size = new System.Drawing.Size(12, 34);
-            this.pnlActive.TabIndex = 2;
-            // 
-            // pnlSentry
-            // 
-            this.pnlSentry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
-            this.pnlSentry.Controls.Add(this.btnSentrySub);
-            this.pnlSentry.Controls.Add(this.button1);
-            this.pnlSentry.Controls.Add(this.button2);
-            this.pnlSentry.Location = new System.Drawing.Point(12, 55);
-            this.pnlSentry.MaximumSize = new System.Drawing.Size(168, 120);
-            this.pnlSentry.MinimumSize = new System.Drawing.Size(168, 36);
-            this.pnlSentry.Name = "pnlSentry";
-            this.pnlSentry.Size = new System.Drawing.Size(168, 36);
-            this.pnlSentry.TabIndex = 3;
             // 
             // btnSentrySub
             // 
             this.btnSentrySub.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
-            this.btnSentrySub.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSentrySub.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnSentrySub.FlatAppearance.BorderSize = 0;
             this.btnSentrySub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -120,47 +89,13 @@
             this.btnSentrySub.ForeColor = System.Drawing.Color.LightGray;
             this.btnSentrySub.Image = global::ControlAppUICore.Properties.Resources.rotation;
             this.btnSentrySub.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSentrySub.Location = new System.Drawing.Point(0, 0);
+            this.btnSentrySub.Location = new System.Drawing.Point(18, 55);
             this.btnSentrySub.Name = "btnSentrySub";
             this.btnSentrySub.Size = new System.Drawing.Size(168, 34);
-            this.btnSentrySub.TabIndex = 3;
+            this.btnSentrySub.TabIndex = 13;
             this.btnSentrySub.Text = "Nöbet";
             this.btnSentrySub.UseVisualStyleBackColor = false;
             this.btnSentrySub.Click += new System.EventHandler(this.btnSentrySub_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.LightGray;
-            this.button1.Image = global::ControlAppUICore.Properties.Resources.rotation;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(4, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 34);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "       Yapılan İşlemler";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.ForeColor = System.Drawing.Color.LightGray;
-            this.button2.Image = global::ControlAppUICore.Properties.Resources.rotation;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 82);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(164, 34);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "       Yapılacak İşlemler";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // btnInventory
             // 
@@ -171,23 +106,13 @@
             this.btnInventory.ForeColor = System.Drawing.Color.LightGray;
             this.btnInventory.Image = global::ControlAppUICore.Properties.Resources.inventory;
             this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInventory.Location = new System.Drawing.Point(16, 106);
+            this.btnInventory.Location = new System.Drawing.Point(18, 100);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(164, 36);
             this.btnInventory.TabIndex = 1;
             this.btnInventory.Text = "     Envanter";
             this.btnInventory.UseVisualStyleBackColor = true;
             this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
-            // 
-            // btnUserName
-            // 
-            this.btnUserName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnUserName.Location = new System.Drawing.Point(0, 733);
-            this.btnUserName.Name = "btnUserName";
-            this.btnUserName.Size = new System.Drawing.Size(180, 23);
-            this.btnUserName.TabIndex = 3;
-            this.btnUserName.Text = "Personel Adı";
-            this.btnUserName.UseVisualStyleBackColor = true;
             // 
             // btnEmployee
             // 
@@ -198,7 +123,7 @@
             this.btnEmployee.ForeColor = System.Drawing.Color.LightGray;
             this.btnEmployee.Image = global::ControlAppUICore.Properties.Resources.employee;
             this.btnEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmployee.Location = new System.Drawing.Point(16, 146);
+            this.btnEmployee.Location = new System.Drawing.Point(18, 147);
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.Size = new System.Drawing.Size(164, 36);
             this.btnEmployee.TabIndex = 2;
@@ -214,7 +139,7 @@
             this.btnPasswordNote.ForeColor = System.Drawing.Color.LightGray;
             this.btnPasswordNote.Image = global::ControlAppUICore.Properties.Resources.lock__2___1_;
             this.btnPasswordNote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPasswordNote.Location = new System.Drawing.Point(16, 546);
+            this.btnPasswordNote.Location = new System.Drawing.Point(18, 617);
             this.btnPasswordNote.Name = "btnPasswordNote";
             this.btnPasswordNote.Size = new System.Drawing.Size(164, 36);
             this.btnPasswordNote.TabIndex = 12;
@@ -231,7 +156,7 @@
             this.btnRequest.ForeColor = System.Drawing.Color.LightGray;
             this.btnRequest.Image = global::ControlAppUICore.Properties.Resources.clipboard;
             this.btnRequest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRequest.Location = new System.Drawing.Point(16, 186);
+            this.btnRequest.Location = new System.Drawing.Point(18, 194);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(164, 36);
             this.btnRequest.TabIndex = 3;
@@ -247,7 +172,7 @@
             this.btnDirectory.ForeColor = System.Drawing.Color.LightGray;
             this.btnDirectory.Image = global::ControlAppUICore.Properties.Resources._001_phonebook;
             this.btnDirectory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDirectory.Location = new System.Drawing.Point(16, 506);
+            this.btnDirectory.Location = new System.Drawing.Point(18, 570);
             this.btnDirectory.Name = "btnDirectory";
             this.btnDirectory.Size = new System.Drawing.Size(164, 36);
             this.btnDirectory.TabIndex = 11;
@@ -264,7 +189,7 @@
             this.btnMaintenance.ForeColor = System.Drawing.Color.LightGray;
             this.btnMaintenance.Image = global::ControlAppUICore.Properties.Resources.schedule;
             this.btnMaintenance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMaintenance.Location = new System.Drawing.Point(16, 226);
+            this.btnMaintenance.Location = new System.Drawing.Point(18, 241);
             this.btnMaintenance.Name = "btnMaintenance";
             this.btnMaintenance.Size = new System.Drawing.Size(164, 36);
             this.btnMaintenance.TabIndex = 4;
@@ -281,7 +206,7 @@
             this.btnGenarator.ForeColor = System.Drawing.Color.LightGray;
             this.btnGenarator.Image = global::ControlAppUICore.Properties.Resources.electric_generator;
             this.btnGenarator.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGenarator.Location = new System.Drawing.Point(16, 466);
+            this.btnGenarator.Location = new System.Drawing.Point(18, 523);
             this.btnGenarator.Name = "btnGenarator";
             this.btnGenarator.Size = new System.Drawing.Size(164, 36);
             this.btnGenarator.TabIndex = 10;
@@ -298,7 +223,7 @@
             this.btnHeadset.ForeColor = System.Drawing.Color.LightGray;
             this.btnHeadset.Image = global::ControlAppUICore.Properties.Resources.headphone;
             this.btnHeadset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHeadset.Location = new System.Drawing.Point(16, 266);
+            this.btnHeadset.Location = new System.Drawing.Point(18, 288);
             this.btnHeadset.Name = "btnHeadset";
             this.btnHeadset.Size = new System.Drawing.Size(164, 36);
             this.btnHeadset.TabIndex = 5;
@@ -315,7 +240,7 @@
             this.btnGuestCard.ForeColor = System.Drawing.Color.LightGray;
             this.btnGuestCard.Image = global::ControlAppUICore.Properties.Resources.id;
             this.btnGuestCard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuestCard.Location = new System.Drawing.Point(16, 426);
+            this.btnGuestCard.Location = new System.Drawing.Point(18, 476);
             this.btnGuestCard.Name = "btnGuestCard";
             this.btnGuestCard.Size = new System.Drawing.Size(164, 36);
             this.btnGuestCard.TabIndex = 9;
@@ -332,7 +257,7 @@
             this.btnIdCard.ForeColor = System.Drawing.Color.LightGray;
             this.btnIdCard.Image = global::ControlAppUICore.Properties.Resources.name;
             this.btnIdCard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIdCard.Location = new System.Drawing.Point(16, 306);
+            this.btnIdCard.Location = new System.Drawing.Point(18, 335);
             this.btnIdCard.Name = "btnIdCard";
             this.btnIdCard.Size = new System.Drawing.Size(164, 36);
             this.btnIdCard.TabIndex = 6;
@@ -349,7 +274,7 @@
             this.btnCabinet.ForeColor = System.Drawing.Color.LightGray;
             this.btnCabinet.Image = global::ControlAppUICore.Properties.Resources.locker;
             this.btnCabinet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCabinet.Location = new System.Drawing.Point(16, 386);
+            this.btnCabinet.Location = new System.Drawing.Point(18, 429);
             this.btnCabinet.Name = "btnCabinet";
             this.btnCabinet.Size = new System.Drawing.Size(164, 36);
             this.btnCabinet.TabIndex = 8;
@@ -366,7 +291,7 @@
             this.btnDrawer.ForeColor = System.Drawing.Color.LightGray;
             this.btnDrawer.Image = global::ControlAppUICore.Properties.Resources.dresser;
             this.btnDrawer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDrawer.Location = new System.Drawing.Point(16, 346);
+            this.btnDrawer.Location = new System.Drawing.Point(18, 382);
             this.btnDrawer.Name = "btnDrawer";
             this.btnDrawer.Size = new System.Drawing.Size(164, 36);
             this.btnDrawer.TabIndex = 7;
@@ -374,22 +299,23 @@
             this.btnDrawer.UseVisualStyleBackColor = true;
             this.btnDrawer.Click += new System.EventHandler(this.btnDrawer_Click);
             // 
-            // btnSentry
+            // pnlActive
             // 
-            this.btnSentry.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this.btnSentry.FlatAppearance.BorderSize = 0;
-            this.btnSentry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSentry.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSentry.ForeColor = System.Drawing.Color.LightGray;
-            this.btnSentry.Image = global::ControlAppUICore.Properties.Resources.rotation;
-            this.btnSentry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSentry.Location = new System.Drawing.Point(481, 336);
-            this.btnSentry.Name = "btnSentry";
-            this.btnSentry.Size = new System.Drawing.Size(164, 34);
-            this.btnSentry.TabIndex = 0;
-            this.btnSentry.Text = "Nöbet";
-            this.btnSentry.UseVisualStyleBackColor = true;
-            this.btnSentry.Click += new System.EventHandler(this.btnSentry_Click);
+            this.pnlActive.BackColor = System.Drawing.Color.Gainsboro;
+            this.pnlActive.Location = new System.Drawing.Point(0, 55);
+            this.pnlActive.Name = "pnlActive";
+            this.pnlActive.Size = new System.Drawing.Size(12, 34);
+            this.pnlActive.TabIndex = 2;
+            // 
+            // btnUserName
+            // 
+            this.btnUserName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnUserName.Location = new System.Drawing.Point(0, 733);
+            this.btnUserName.Name = "btnUserName";
+            this.btnUserName.Size = new System.Drawing.Size(180, 23);
+            this.btnUserName.TabIndex = 3;
+            this.btnUserName.Text = "Personel Adı";
+            this.btnUserName.UseVisualStyleBackColor = true;
             // 
             // pnlTopMenu
             // 
@@ -463,16 +389,10 @@
             // pnlCenter
             // 
             this.pnlCenter.BackColor = System.Drawing.Color.LightGray;
-            this.pnlCenter.Controls.Add(this.btnSentry);
             this.pnlCenter.Location = new System.Drawing.Point(182, 38);
             this.pnlCenter.Name = "pnlCenter";
             this.pnlCenter.Size = new System.Drawing.Size(1184, 730);
             this.pnlCenter.TabIndex = 3;
-            // 
-            // timerSentry
-            // 
-            this.timerSentry.Interval = 15;
-            this.timerSentry.Tick += new System.EventHandler(this.timerSentry_Tick);
             // 
             // HomePage
             // 
@@ -493,17 +413,14 @@
             this.Text = "Control App";
             this.Load += new System.EventHandler(this.homePage_Load);
             this.pnlLeftMenu.ResumeLayout(false);
-            this.pnlSentry.ResumeLayout(false);
             this.pnlTopMenu.ResumeLayout(false);
             this.pnlTopMenu.PerformLayout();
-            this.pnlCenter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel pnlTopMenu;
-        private System.Windows.Forms.Button btnSentry;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button btnRequest;
         private System.Windows.Forms.Button btnEmployee;
@@ -524,10 +441,6 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnPasswordNote;
-        private Button button2;
-        private Button button1;
-        private Panel pnlSentry;
         private Button btnSentrySub;
-        private System.Windows.Forms.Timer timerSentry;
     }
 }
