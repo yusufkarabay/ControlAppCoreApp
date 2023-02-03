@@ -183,9 +183,37 @@ namespace ControlAppDesktop.Forms
                 return;
             }
         }
-        private void deleteInventoryToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void deleteInventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (dgvInventory.CurrentRow == null)
+            {
+                MessageBox.Show("Silmek İçin Bir Kayıt Seçiniz");
+                return;
+            }
+            var inventory = inventoryService.GetByIdAsync(Guid.Parse(dgvInventory.CurrentRow.Cells["Id"].Value.ToString())).Result;
+            DialogResult dialogResult = MessageBox.Show("Seçili Envanteri Silmek İstediğinize Emin Misiniz?",
+                            "Soru", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (dgvInventory.Enabled==true)
+                {
+                    dgvInventory.Enabled=false;
+                }
+            }
+            if (dialogResult==DialogResult.No)
+            {
+                if (dgvInventory.Enabled==false)
+                {
+                    dgvInventory.Enabled=true;
+                }
+                return;
+            }
+            inventoryRepository.Delete(inventory);
+            if (dgvInventory.Enabled==false)
+            {
+                dgvInventory.Enabled=true;
+            }
+            await AllInventoryList();
         }
         private async void refreshInventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -198,12 +226,15 @@ namespace ControlAppDesktop.Forms
                 MessageBox.Show("Listeden Güncellenecek İş seçiniz");
                 return;
             }
-
             var inventory = inventoryService.GetByIdAsync(Guid.Parse(dgvInventory.CurrentRow.Cells["Id"].Value.ToString())).Result;
             DialogResult dialogResult = MessageBox.Show("Seçili Envanteri Güncelleme Yapmak İstediğinize Emin Misiniz?",
                             "Soru", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
+                if (dgvInventory.Enabled==true)
+                {
+                    dgvInventory.Enabled=false;
+                }
                 txtbxInventoryName.Text=inventory.Name;
                 txtbxAmount.Text=inventory.Amount.ToString();
                 txtbxInventorySeriNo.Text=inventory.SerialNumber;
@@ -211,6 +242,10 @@ namespace ControlAppDesktop.Forms
             }
             if (dialogResult==DialogResult.No)
             {
+                if (dgvInventory.Enabled==false)
+                {
+                    dgvInventory.Enabled=true;
+                }
                 return;
             }
             if (btnUpdate.Visible == false)
@@ -241,17 +276,16 @@ namespace ControlAppDesktop.Forms
                             "Soru", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                var idControl = inventoryService.GetByIdAsync(Guid.Parse(dgvInventory.CurrentRow.Cells["Id"].Value.ToString())).Result;
-                if (idControl.Id==inventory.Id)
+                inventory.SerialNumber = txtbxInventorySeriNo.Text;
+                inventory.CreatedDate = Convert.ToDateTime(dtpInventory.Value.ToString("yyyy-MM-dd"));
+                inventory.Amount = int.Parse(txtbxAmount.Text);
+                inventory.Info = rtxbxInventoryInfo.Text;
+                inventory.Name = txtbxInventoryName.Text;
+                inventory.CreatedBy=userInfo.Item1.Name+" "+userInfo.Item1.Surname;
+                inventoryRepository.Update(inventory);
+                if (dgvInventory.Enabled==false)
                 {
-                    inventory.SerialNumber = txtbxInventorySeriNo.Text;
-                    inventory.CreatedDate = Convert.ToDateTime(dtpInventory.Value.ToString("yyyy-MM-dd"));
-                    inventory.Amount = int.Parse(txtbxAmount.Text);
-                    inventory.Info = rtxbxInventoryInfo.Text;
-                    inventory.Name = txtbxInventoryName.Text;
-                    inventory.CreatedBy=userInfo.Item1.Name+" "+userInfo.Item1.Surname;
-                    inventoryRepository.Update(inventory);
-
+                    dgvInventory.Enabled=true;
                 }
                 else
                 {
@@ -265,20 +299,24 @@ namespace ControlAppDesktop.Forms
                     rtxbxInventoryInfo.Text = "";
                     return;
                 }
-
+            }
+            if (dialogResult == DialogResult.No)
+            {
+                if (dgvInventory.Enabled==false)
+                {
+                    dgvInventory.Enabled=true;
+                }
             }
             txtbxAmount.Text = "";
             txtbxInventoryName.Text = "";
             txtbxInventorySeriNo.Text = "";
             rtxbxInventoryInfo.Text = "";
-
-            AllInventoryList();
+            await AllInventoryList();
             if (btnUpdate.Visible == true)
             {
                 btnUpdate.Visible = false;
             }
             btnUpdate.Visible = false;
-
         }
         private void txtbzxSearchInventory_MouseClick(object sender, MouseEventArgs e)
         {
